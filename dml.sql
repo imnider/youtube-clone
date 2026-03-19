@@ -144,12 +144,15 @@ VALUES
 	(@UserAccount01, @Video04, 80),
 	(@UserAccount02, @Video04, 60);
 
+<<<<<<< HEAD
 -- Modifico los datos actuales para la consulta de users que no han visto ningún video en 30 días
 UPDATE ViewHistory
 SET CreatedAt = '2026-01-01'
 WHERE UserID = 'CEF032E4-FA86-459F-A52A-1A70D1233B4B'; --poner ID de algún usuario
 SELECT * FROM UserAccount --seleccionarlo aquí (ID)
 
+=======
+>>>>>>> 00b36b8d812edba129ae9ccdf06243ea50cbbce6
 DECLARE @Tag01 UNIQUEIDENTIFIER = NEWID();
 DECLARE @Tag02 UNIQUEIDENTIFIER = NEWID();
 DECLARE @Tag03 UNIQUEIDENTIFIER = NEWID();

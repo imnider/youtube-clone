@@ -101,6 +101,7 @@ HAVING
 GO
 
 -- Suscripciones de un usuario con el último video publicado de cada canal
+<<<<<<< HEAD
 DECLARE @User UNIQUEIDENTIFIER = '6826B106-8B27-469A-B0AB-496739C4FEFC';
 
 SELECT
@@ -184,3 +185,14 @@ WHERE sub.UserID = @User
   AND va.DisplayName = 'Public'
 ORDER BY v.PublishedAt DESC;
 GO
+=======
+
+-- Top 3 etiquetas con más videos
+
+-- Usuarios que no han visto ningún video en los últimos 30 días
+
+-- Duración total en horas del contenido de un canal
+
+-- Videos de canales suscritos ordenados por fecha para el feed de un usuario
+
+>>>>>>> 00b36b8d812edba129ae9ccdf06243ea50cbbce6
