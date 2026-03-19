@@ -1,7 +1,42 @@
 USE YoutubeClone;
 GO
 
+-- Todos los canales y sus usuarios
+SELECT
+	c.DisplayName As ChannelName,
+	c.ChannelID,
+	ua.UserName
+FROM Channel c
+INNER JOIN UserAccount ua
+	ON c.UserID = ua.UserID
+GO
+
+-- Todos los videos con sus visualizaciones
+SELECT
+	v.Title,
+	COUNT(vh.ViewHistoryID) AS Views
+FROM ViewHistory vh
+INNER JOIN Video v
+	ON vh.VideoID = v.VideoID
+GROUP BY v.Title
+GO
+
 -- Videos de un canal ordenados por visualizaciones
+DECLARE @Channel UNIQUEIDENTIFIER = 'B85F26E6-B7B1-43D3-895F-F8DE4DBCB90F';
+
+SELECT
+	c.DisplayName AS ChannelName,
+	v.Title,
+	Count(vh.ViewHistoryID) As Views
+FROM ViewHistory vh
+INNER JOIN Video v
+	ON vh.VideoID = v.VideoID
+INNER JOIN Channel c
+	ON c.ChannelID = v.ChannelID
+WHERE c.ChannelID = @Channel
+GROUP BY v.Title, c.DisplayName
+ORDER BY Views
+GO
 
 -- Canales con más suscriptores
 SELECT 
@@ -15,7 +50,6 @@ GROUP BY
 ORDER BY
 	SubscriptionCount DESC
 GO
-
 
 -- Lista de todos los usuarios
 SELECT
@@ -101,8 +135,7 @@ HAVING
 GO
 
 -- Suscripciones de un usuario con el último video publicado de cada canal
-<<<<<<< HEAD
-DECLARE @User UNIQUEIDENTIFIER = '6826B106-8B27-469A-B0AB-496739C4FEFC';
+DECLARE @User UNIQUEIDENTIFIER = 'C9237A7B-9A1D-4515-B4F7-A4B5B707DA91';
 
 SELECT
     c.DisplayName AS ChannelName,
@@ -167,7 +200,7 @@ ORDER BY TotalSeconds DESC;
 GO
 
 -- Videos de canales suscritos ordenados por fecha para el feed de un usuario
-DECLARE @User UNIQUEIDENTIFIER = 'CA743DF4-6BD9-421C-A74E-4F8048E327E4';
+DECLARE @User UNIQUEIDENTIFIER = 'C9237A7B-9A1D-4515-B4F7-A4B5B707DA91';
 
 SELECT
     c.DisplayName AS ChannelName,
@@ -185,14 +218,3 @@ WHERE sub.UserID = @User
   AND va.DisplayName = 'Public'
 ORDER BY v.PublishedAt DESC;
 GO
-=======
-
--- Top 3 etiquetas con más videos
-
--- Usuarios que no han visto ningún video en los últimos 30 días
-
--- Duración total en horas del contenido de un canal
-
--- Videos de canales suscritos ordenados por fecha para el feed de un usuario
-
->>>>>>> 00b36b8d812edba129ae9ccdf06243ea50cbbce6
