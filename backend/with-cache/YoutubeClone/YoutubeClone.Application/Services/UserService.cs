@@ -25,29 +25,37 @@ namespace YoutubeClone.Application.Services
                 CreatedAt = DateTimeHelper.UtcNow()
             };
 
+            // Validacion de errores
+            string errorMessage = "";
+            int errorCount = 0;
+
             // Validar si existe un usuario con el mismo UserName y si el Email ya está registrado
-            bool existUserName = false;
-            bool existEmail = false;
             var users = cache.Get();
             foreach (UserDto user in users)
             {
-                if (user.UserName == newUser.UserName) existUserName = true;
-                if (user.Email == newUser.Email) existEmail = true;
+                if (user.UserName == newUser.UserName) errorMessage += "\nYa existe un usuario con ese username."; errorCount++;
+                if (user.Email == newUser.Email) errorMessage += "\nEl email ya está registrado."; errorCount++;
             }
-            if (existUserName) return ResponsesHelper.Create(newUser, "Ya existe un usuario con ese username.");
-            if (existEmail) return ResponsesHelper.Create(newUser, "El email ya está registado");
 
             // Validar que su edad sea mayor a 13
             int miniumAge = 13;
             if (!ParentalControlHelper.hasMinimumAge(model.Birthday, miniumAge))
             {
-                return ResponsesHelper.Create(newUser, $"Debe ser mayor de {13} años.");
+                errorMessage += $"\nDebe ser mayor de {miniumAge} años.";
+                errorCount++;
             }
 
             // Validar el contenido de la Password
             if (!PasswordHelper.isValid(model.Password))
             {
-                return ResponsesHelper.Create(newUser, "La contraseña debe tener al menos una mayúscula y un caracter especial.");
+                errorMessage += "\nLa contraseña debe tener al menos una mayúscula y un caracter especial.";
+                errorCount++;
+            }
+
+            // Verificar si existe un error
+            if (errorCount > 0)
+            {
+                return ResponsesHelper.Create(newUser, $"Errores: {errorCount}" + errorMessage);
             }
 
             // Agregar a caché y crear
