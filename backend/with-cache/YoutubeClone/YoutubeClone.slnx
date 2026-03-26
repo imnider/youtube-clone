@@ -1,1 +1,5 @@
-<Solution />
+<Solution>
+  <Project Path="YoutubeClone.Application/YoutubeClone.Application.csproj" />
+  <Project Path="YoutubeClone.Shared/YoutubeClone.Shared.csproj" />
+  <Project Path="YoutubeClone.WebApp/YoutubeClone.WebApp.csproj" />
+</Solution>
