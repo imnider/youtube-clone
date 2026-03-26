@@ -1,0 +1,315 @@
+{
+  "info": {
+    "_postman_id": "9b0587ee-1e11-4127-9cbd-c7d73dc9376f",
+    "name": "api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53458797"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "Crear usuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Username\": \"imNider\",\r\n    \"DisplayName\": \"neider vélez\",\r\n    \"Email\": \"neIder@example.com\",\r\n    \"Birthday\": \"2022-02-02\",\r\n    \"Country\": \"ecuador\",\r\n    \"Password\": \"Pssw0rd123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/users",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener todos los usuarios",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/users",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener usuario por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/users/ef67c585-2b64-412e-b48c-8a6f42656b10",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users",
+                "ef67c585-2b64-412e-b48c-8a6f42656b10"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar usuario por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/users/ef67c585-2b64-412e-b48c-8a6f42656b10",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users",
+                "ef67c585-2b64-412e-b48c-8a6f42656b10"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "channels",
+      "item": [
+        {
+          "name": "Crear canal",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/channels?UserId=1aeb8d49-221a-4136-8d43-ee8536617d12&Handle=niderchannel&DisplayName=Nider Channel",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "channels"
+              ],
+              "query": [
+                {
+                  "key": "UserId",
+                  "value": "1aeb8d49-221a-4136-8d43-ee8536617d12"
+                },
+                {
+                  "key": "Handle",
+                  "value": "niderchannel"
+                },
+                {
+                  "key": "DisplayName",
+                  "value": "Nider Channel"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener todos los canales",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/channels?Limit=3&Offset=6",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "channels"
+              ],
+              "query": [
+                {
+                  "key": "Limit",
+                  "value": "3"
+                },
+                {
+                  "key": "Offset",
+                  "value": "6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener canal por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/channels/c0aa72c6-6987-4c2c-bd46-913b2d09fad3",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "channels",
+                "c0aa72c6-6987-4c2c-bd46-913b2d09fad3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar canal por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/channels/30c4e84b-7ff9-46af-a70b-1d4652db1130",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "channels",
+                "30c4e84b-7ff9-46af-a70b-1d4652db1130"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "videos",
+      "item": [
+        {
+          "name": "Crear video",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ChannelId\": \"30c4e84b-7ff9-46af-a70b-1d4652db1130\",\r\n    \"Title\": \"Un pato que va cantando alegremente\",\r\n    \"Description\": \"¡Cuac cuac!\",\r\n    \"DurationSeconds\": 1200,\r\n    \"ThumbnailUrl\": \"images/thumbanail.jpg\",\r\n    \"AgeRestriction\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/videos",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "videos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar video",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/videos/c017e230-e15a-473a-ae20-5279feafdba3?Title=El pato ya no canta&AgeDescription=false",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "videos",
+                "c017e230-e15a-473a-ae20-5279feafdba3"
+              ],
+              "query": [
+                {
+                  "key": "Title",
+                  "value": "El pato ya no canta"
+                },
+                {
+                  "key": "AgeDescription",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener todos los videos",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Limit\": 10,\r\n    \"Offset\": 0,\r\n    \"Title\": \"Ya no hay pato\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/videos",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "videos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar video por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Limit\": 10,\r\n    \"Offset\": 0,\r\n    \"Title\": \"Ya no hay pato\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/videos/c017e230-e15a-473a-ae20-5279feafdba3",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "videos",
+                "c017e230-e15a-473a-ae20-5279feafdba3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
