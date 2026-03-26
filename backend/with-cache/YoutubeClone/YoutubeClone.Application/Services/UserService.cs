@@ -27,15 +27,15 @@ namespace YoutubeClone.Application.Services
 
             // Validar si existe un usuario con el mismo UserName y si el Email ya está registrado
             bool existUserName = false;
+            bool existEmail = false;
             var users = cache.Get();
             foreach (UserDto user in users)
             {
                 if (user.UserName == newUser.UserName) existUserName = true;
+                if (user.Email == newUser.Email) existEmail = true;
             }
-            if (existUserName)
-            {
-                return ResponsesHelper.Create(newUser, "Ya existe un usuario con ese username.");
-            }
+            if (existUserName) return ResponsesHelper.Create(newUser, "Ya existe un usuario con ese username.");
+            if (existEmail) return ResponsesHelper.Create(newUser, "El email ya está registado");
 
             // Validar que su edad sea mayor a 13
             int miniumAge = 13;
