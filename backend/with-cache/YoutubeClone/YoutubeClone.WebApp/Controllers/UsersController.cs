@@ -21,5 +21,19 @@ namespace YoutubeClone.WebApp.Controllers
             var rsp = userService.GetAll(limit, offset);
             return Ok(rsp);
         }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var rsp = userService.GetById(id);
+            return Ok(rsp);
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var rsp = userService.Delete(id);
+            return Ok(rsp);
+        }
     }
 }
