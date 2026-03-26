@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Text.RegularExpressions;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
@@ -38,10 +37,11 @@ namespace YoutubeClone.Application.Services
                 return ResponsesHelper.Create(newUser, "Ya existe un usuario con ese username.");
             }
 
+            // Validar que su edad sea mayor a 13
+
+
             // Validar el contenido de la Password
-            string patronPassword = @"^(?=.*[A-Z])(?=.*[\W_]).+$";
-            bool validPassword = Regex.IsMatch(model.Password, patronPassword);
-            if (!validPassword)
+            if (!PasswordHelper.isValid(model.Password))
             {
                 return ResponsesHelper.Create(newUser, "La contraseña debe tener al menos una mayúscula y un caracter especial.");
             }
