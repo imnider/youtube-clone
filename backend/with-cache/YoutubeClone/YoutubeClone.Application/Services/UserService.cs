@@ -25,7 +25,7 @@ namespace YoutubeClone.Application.Services
                 CreatedAt = DateTimeHelper.UtcNow()
             };
 
-            // Validar si existe un usuario con el mismo UserName
+            // Validar si existe un usuario con el mismo UserName y si el Email ya está registrado
             bool existUserName = false;
             var users = cache.Get();
             foreach (UserDto user in users)
@@ -38,7 +38,11 @@ namespace YoutubeClone.Application.Services
             }
 
             // Validar que su edad sea mayor a 13
-
+            int miniumAge = 13;
+            if (!ParentalControlHelper.hasMinimumAge(model.Birthday, miniumAge))
+            {
+                return ResponsesHelper.Create(newUser, $"Debe ser mayor de {13} años.");
+            }
 
             // Validar el contenido de la Password
             if (!PasswordHelper.isValid(model.Password))
