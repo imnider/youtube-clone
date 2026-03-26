@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
@@ -25,17 +26,27 @@ namespace YoutubeClone.Application.Services
                 CreatedAt = DateTimeHelper.UtcNow()
             };
 
-            bool exist = false;
+            // Validar si existe un usuario con el mismo UserName
+            bool existUserName = false;
             var users = cache.Get();
             foreach (UserDto user in users)
             {
-                if (user.UserName == newUser.UserName) exist = true;
+                if (user.UserName == newUser.UserName) existUserName = true;
             }
-            if (exist is true)
+            if (existUserName)
             {
                 return ResponsesHelper.Create(newUser, "Ya existe un usuario con ese username.");
             }
 
+            // Validar el contenido de la Password
+            string patronPassword = @"^(?=.*[A-Z])(?=.*[\W_]).+$";
+            bool validPassword = Regex.IsMatch(model.Password, patronPassword);
+            if (!validPassword)
+            {
+                return ResponsesHelper.Create(newUser, "La contraseña debe tener al menos una mayúscula y un caracter especial.");
+            }
+
+            // Agregar a caché y crear
             cache.Add(newUser.UserId.ToString(), newUser);
             return ResponsesHelper.Create(newUser, "Usuario creado correctamente.");
         }
