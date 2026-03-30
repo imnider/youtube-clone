@@ -50,6 +50,9 @@ El Backend de este Bootcamp es desarrollado con .NET
 - Capa WebApp
 	- Microsoft.EntityFrameworkCore.Design
 
+### Comandos en la Terminal
+- Scaffolding: `dotnet ef dbcontext scaffold "Server=localhost,1433;User=sa;Password=Admin1234@;Database=YoutubeClone;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer --project YoutubeClone.Domain --startup-project YoutubeClone.WebApp`
+
 ### Archivos (Orden sugerido)
 1. Cache.cs - `Shared/`
 2. DataTimeHelper.cs - `Shared/Helpers/`
