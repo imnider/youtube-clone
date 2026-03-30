@@ -1,0 +1,97 @@
+﻿using System.Globalization;
+using YoutubeClone.Application.Helpers;
+using YoutubeClone.Application.Interfaces.Services;
+using YoutubeClone.Application.Models.DTOs;
+using YoutubeClone.Application.Models.Requests.Users;
+using YoutubeClone.Application.Models.Responses;
+using YoutubeClone.Shared;
+using YoutubeClone.Shared.Helpers;
+
+namespace YoutubeClone.Application.Services
+{
+    public class UserService(Cache<UserDto> cache) : IUserService
+    {
+        public GenericResponse<UserDto> Create(CreateUserRequest model)
+        {
+            var newUser = new UserDto
+            {
+                UserId = Guid.NewGuid(),
+                UserName = model.UserName.ToLower(),
+                DisplayName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.DisplayName.ToLower()),
+                Email = model.Email.ToLower(),
+                Birthday = model.Birthday,
+                Country = model.Country,
+                Password = model.Password,
+                CreatedAt = DateTimeHelper.UtcNow()
+            };
+
+            // Validacion de errores
+            string errorMessage = "";
+            int errorCount = 0;
+
+            // Validar si existe un usuario con el mismo UserName y si el Email ya está registrado
+            var users = cache.Get();
+            foreach (UserDto user in users)
+            {
+                if (user.UserName == newUser.UserName) errorMessage += "\nYa existe un usuario con ese username."; errorCount++;
+                if (user.Email == newUser.Email) errorMessage += "\nEl email ya está registrado."; errorCount++;
+            }
+
+            // Validar que su edad sea mayor a 13
+            int miniumAge = 13;
+            if (!ParentalControlHelper.hasMinimumAge(model.Birthday, miniumAge))
+            {
+                errorMessage += $"\nDebe ser mayor de {miniumAge} años.";
+                errorCount++;
+            }
+
+            // Validar el contenido de la Password
+            if (!PasswordHelper.isValid(model.Password))
+            {
+                errorMessage += "\nLa contraseña debe tener al menos una mayúscula y un caracter especial.";
+                errorCount++;
+            }
+
+            // Verificar si existe un error
+            if (errorCount > 0)
+            {
+                return ResponsesHelper.Create(newUser, $"Errores: {errorCount}" + errorMessage);
+            }
+
+            // Agregar a caché y crear
+            cache.Add(newUser.UserId.ToString(), newUser);
+            return ResponsesHelper.Create(newUser, "Usuario creado correctamente.");
+        }
+
+        public GenericResponse<bool> Delete(Guid id)
+        {
+            var exist = cache.Get(id.ToString());
+            if (exist is null)
+            {
+                return ResponsesHelper.Create(false, "Usuario no encontrado.");
+            }
+            cache.Delete(id.ToString());
+            return ResponsesHelper.Create(true, "Usuario eliminado con éxito.");
+        }
+
+        public GenericResponse<List<UserDto>> GetAll(int limit, int offset)
+        {
+            var users = cache.Get();
+            if (users.Count is 0)
+            {
+                return ResponsesHelper.Create(users, "No se encontraron usuarios.");
+            }
+            return ResponsesHelper.Create(users, "Se encontraron usuarios creados.");
+        }
+
+        public GenericResponse<UserDto?> GetById(Guid id)
+        {
+            var user = cache.Get(id.ToString());
+            if (user is null)
+            {
+                return ResponsesHelper.Create(user, "Usuario no encontrado.");
+            }
+            return ResponsesHelper.Create(user, "Usuario encontrado con éxito.");
+        }
+    }
+}
