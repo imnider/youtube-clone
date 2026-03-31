@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using YoutubeClone.Domain.Database.SqlServer.Entities;
 
-namespace YoutubeClone.Domain;
+namespace YoutubeClone.Domain.Database.SqlServer.Context;
 
 public partial class YoutubeCloneContext : DbContext
 {

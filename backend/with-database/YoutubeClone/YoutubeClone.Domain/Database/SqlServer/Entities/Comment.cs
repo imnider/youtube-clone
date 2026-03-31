@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace YoutubeClone.Domain;
+namespace YoutubeClone.Domain.Database.SqlServer.Entities;
 
 public partial class Comment
 {
