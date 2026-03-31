@@ -108,7 +108,7 @@ namespace YoutubeClone.Application.Services
         {
             var user = await GetUser(id);
 
-            user.UserName = model.DisplayName ?? user.UserName;
+            user.UserName = model.UserName ?? user.UserName;
             user.DisplayName = model.DisplayName ?? user.DisplayName;
 
             // tambien hacerlo con la variabe UpdatedAt

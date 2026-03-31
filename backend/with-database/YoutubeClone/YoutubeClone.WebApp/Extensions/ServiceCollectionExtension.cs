@@ -3,6 +3,7 @@ using YoutubeClone.Application.Services;
 using YoutubeClone.Domain.Database.SqlServer.Context;
 using YoutubeClone.Domain.Interfaces.Repositories;
 using YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories;
+using YoutubeClone.WebApp.Middlewares;
 
 namespace YoutubeClone.WebApp.Extensions
 {
@@ -32,7 +33,7 @@ namespace YoutubeClone.WebApp.Extensions
         /// <param name="services"></param>
         public static void AddMiddlewares(this IServiceCollection services)
         {
-            services.AddScoped<ErrorEventHandler>();
+            services.AddScoped<ErrorHandleMiddleware>();
         }
 
         /// <summary>
