@@ -17,6 +17,7 @@ El Backend de este Bootcamp es desarrollado con .NET
 - Crear un ProjectName.Application como Library
 - Crear un ProjectName.Shared como Library
 - Crear un ProjectName.Domain como Library
+- Crear un ProjectName.Infrastructure como Library
 
 ### Carpetas de la Capa Application
 - Helpers
@@ -38,9 +39,20 @@ El Backend de este Bootcamp es desarrollado con .NET
 		- Context
 		- Entities
 		- Repositories
+- Interfaces
+	- Repositories
+
+### Carpetas de la Capa Infrastructure
+- Persistence
+	- SqlServer
+		- Repositories
+
+### Carpetas de la Capa WebApp
+- Extensions
 
 ### Referencias de Proyecto
 - Capa Application: Shared y Domain
+- Capa Infrastructure: Domain
 - Capa WebApp: Application y Domain
 
 ### Instalar Paquetes NuGet
@@ -55,7 +67,7 @@ El Backend de este Bootcamp es desarrollado con .NET
 - Scaffolding: `dotnet ef dbcontext scaffold "Server=localhost,1433;User=sa;Password=Admin1234@;Database=YoutubeClone;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer --project YoutubeClone.Domain --startup-project YoutubeClone.WebApp --context-dir Database/SqlServer/Context --output-dir Database/SqlServer/Entities`
 
 ### Archivos (Orden sugerido)
-1. Cache.cs - `Shared/`
+1. Cache.cs - `Shared/` (Solo para caché)
 2. DataTimeHelper.cs - `Shared/Helpers/`
 3. ValidationConstants.cs - `Shared/Constants/`
 4. GenericResponse.cs - `Application/Models/Responses/`
