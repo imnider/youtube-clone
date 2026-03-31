@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\YoutubeClone.Domain\YoutubeClone.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,94 +4,115 @@ using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Users;
 using YoutubeClone.Application.Models.Responses;
-using YoutubeClone.Shared;
+using YoutubeClone.Domain.Database.SqlServer.Entities;
+using YoutubeClone.Domain.Interfaces.Repositories;
+using YoutubeClone.Shared.Constants;
 using YoutubeClone.Shared.Helpers;
 
 namespace YoutubeClone.Application.Services
 {
-    public class UserService(Cache<UserDto> cache) : IUserService
+    public class UserService(IUserRepository reposity) : IUserService
     {
-        public GenericResponse<UserDto> Create(CreateUserRequest model)
+        public async Task<GenericResponse<UserDto>> Create(CreateUserRequest model)
         {
-            var newUser = new UserDto
+            var create = await reposity.Create(new UserAccount
             {
                 UserId = Guid.NewGuid(),
                 UserName = model.UserName.ToLower(),
                 DisplayName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(model.DisplayName.ToLower()),
                 Email = model.Email.ToLower(),
                 Birthday = model.Birthday,
-                Country = model.Country,
+                Location = model.Location,
                 Password = model.Password,
                 CreatedAt = DateTimeHelper.UtcNow()
+            });
+            return ResponsesHelper.Create(Map(create), "Usuario creado correctamente.");
+        }
+
+        public async Task<GenericResponse<bool>> Delete(Guid id)
+        {
+            var user = await GetUser(id);
+
+            var delete = await reposity.Delete(user);
+
+            return ResponsesHelper.Create(delete);
+        }
+
+        public async Task<GenericResponse<List<UserDto>>> GetAll(FilterUserRequest model)
+        {
+            var queryable = reposity.Queryable();
+
+            if (string.IsNullOrWhiteSpace(model.UserName))
+            {
+                queryable = queryable.Where(x => x.UserName.Contains(model.UserName ?? ""));
+            }
+            if (string.IsNullOrWhiteSpace(model.DisplayName))
+            {
+                queryable = queryable.Where(x => x.DisplayName.Contains(model.DisplayName ?? ""));
+            }
+            if (string.IsNullOrWhiteSpace(model.Email))
+            {
+                queryable = queryable.Where(x => x.Email.Contains(model.Email ?? ""));
+            }
+            // hacer birthday
+            if (string.IsNullOrWhiteSpace(model.Location))
+            {
+                queryable = queryable.Where(x => x.Location.Contains(model.Location ?? ""));
+            }
+
+            // Paginación y consulta
+            var users = queryable.Take(model.Limit).Skip(model.Offset).ToList();
+
+            // Mapear usuarios
+            List<UserDto> mapped = [];
+            foreach (var user in users)
+            {
+                mapped.Add(Map(user));
+            }
+
+            return ResponsesHelper.Create(mapped);
+        }
+
+        public async Task<GenericResponse<UserDto>> GetById(Guid id)
+        {
+            var user = await GetUser(id);
+            return ResponsesHelper.Create(Map(user));
+        }
+
+        private async Task<UserAccount> GetUser(Guid id)
+        {
+            return await reposity.Get(id)
+                ?? throw new Exception(ResponseConstants.USER_NOT_EXIST);
+        }
+
+        private static UserDto Map(UserAccount user)
+        {
+            return new UserDto
+            {
+                UserId = user.UserId,
+                UserName = user.UserName,
+                DisplayName = user.DisplayName,
+                Email = user.Email,
+                Birthday = user.Birthday,
+                Location = user.Location,
+                Password = user.Password,
+                CreatedAt = user.CreatedAt,
+
             };
-
-            // Validacion de errores
-            string errorMessage = "";
-            int errorCount = 0;
-
-            // Validar si existe un usuario con el mismo UserName y si el Email ya está registrado
-            var users = cache.Get();
-            foreach (UserDto user in users)
-            {
-                if (user.UserName == newUser.UserName) errorMessage += "\nYa existe un usuario con ese username."; errorCount++;
-                if (user.Email == newUser.Email) errorMessage += "\nEl email ya está registrado."; errorCount++;
-            }
-
-            // Validar que su edad sea mayor a 13
-            int miniumAge = 13;
-            if (!ParentalControlHelper.hasMinimumAge(model.Birthday, miniumAge))
-            {
-                errorMessage += $"\nDebe ser mayor de {miniumAge} años.";
-                errorCount++;
-            }
-
-            // Validar el contenido de la Password
-            if (!PasswordHelper.isValid(model.Password))
-            {
-                errorMessage += "\nLa contraseña debe tener al menos una mayúscula y un caracter especial.";
-                errorCount++;
-            }
-
-            // Verificar si existe un error
-            if (errorCount > 0)
-            {
-                return ResponsesHelper.Create(newUser, $"Errores: {errorCount}" + errorMessage);
-            }
-
-            // Agregar a caché y crear
-            cache.Add(newUser.UserId.ToString(), newUser);
-            return ResponsesHelper.Create(newUser, "Usuario creado correctamente.");
         }
 
-        public GenericResponse<bool> Delete(Guid id)
+        public async Task<GenericResponse<UserDto>> Update(Guid id, UpdateUserRequest model)
         {
-            var exist = cache.Get(id.ToString());
-            if (exist is null)
-            {
-                return ResponsesHelper.Create(false, "Usuario no encontrado.");
-            }
-            cache.Delete(id.ToString());
-            return ResponsesHelper.Create(true, "Usuario eliminado con éxito.");
-        }
+            var user = await GetUser(id);
 
-        public GenericResponse<List<UserDto>> GetAll(int limit, int offset)
-        {
-            var users = cache.Get();
-            if (users.Count is 0)
-            {
-                return ResponsesHelper.Create(users, "No se encontraron usuarios.");
-            }
-            return ResponsesHelper.Create(users, "Se encontraron usuarios creados.");
-        }
+            user.UserName = model.DisplayName ?? user.UserName;
+            user.DisplayName = model.DisplayName ?? user.DisplayName;
 
-        public GenericResponse<UserDto?> GetById(Guid id)
-        {
-            var user = cache.Get(id.ToString());
-            if (user is null)
-            {
-                return ResponsesHelper.Create(user, "Usuario no encontrado.");
-            }
-            return ResponsesHelper.Create(user, "Usuario encontrado con éxito.");
+            // tambien hacerlo con la variabe UpdatedAt
+
+            var update = await reposity.Update(user);
+
+            return ResponsesHelper.Create(Map(user));
         }
     }
 }

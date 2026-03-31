@@ -27,7 +27,7 @@ namespace YoutubeClone.Application.Models.Requests.Users
         [Required(ErrorMessage = ValidationConstants.REQUIRED)]
         [MaxLength(30, ErrorMessage = ValidationConstants.MAX_LENGTH)]
         [MinLength(5, ErrorMessage = ValidationConstants.MIN_LENGTH)]
-        public string Country { get; set; } = null!;
+        public string Location { get; set; } = null!;
 
         [Required(ErrorMessage = ValidationConstants.REQUIRED)]
         [MaxLength(30, ErrorMessage = ValidationConstants.MAX_LENGTH)]

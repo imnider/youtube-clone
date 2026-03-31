@@ -1,20 +1,7 @@
-using YoutubeClone.Application.Interfaces.Services;
-using YoutubeClone.Application.Models.DTOs;
-using YoutubeClone.Application.Services;
-using YoutubeClone.Shared;
+using YoutubeClone.WebApp.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-// Services
-builder.Services.AddScoped<IUserService, UserService>();
-
-builder.Services.AddSingleton<Cache<UserDto>>();
+builder.Services.AddCore(builder.Configuration);
 
 var app = builder.Build();
 
