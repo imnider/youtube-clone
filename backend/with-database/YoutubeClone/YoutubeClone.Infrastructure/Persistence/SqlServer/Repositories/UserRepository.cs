@@ -26,28 +26,11 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
             }
         }
 
-        public async Task<bool> Delete(UserAccount userAccount)
-        {
-            try
-            {
-                context.UserAccounts.Remove(userAccount);
-
-                var deleteCount = await context.SaveChangesAsync();
-
-                return deleteCount > 0;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         public async Task<UserAccount?> Get(Guid userId)
         {
             try
             {
-                return await context.UserAccounts.FirstOrDefaultAsync(x => x.UserId == userId);
+                return await context.UserAccounts.FirstOrDefaultAsync(x => x.UserId == userId && x.DeletedAt == null);
             }
             catch (Exception)
             {
@@ -78,7 +61,7 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
         {
             try
             {
-                return context.UserAccounts.AsQueryable();
+                return context.UserAccounts.Where(x => x.DeletedAt == null).AsQueryable();
             }
             catch (Exception)
             {

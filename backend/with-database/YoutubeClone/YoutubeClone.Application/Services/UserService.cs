@@ -5,6 +5,7 @@ using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Users;
 using YoutubeClone.Application.Models.Responses;
 using YoutubeClone.Domain.Database.SqlServer.Entities;
+using YoutubeClone.Domain.Exceptions;
 using YoutubeClone.Domain.Interfaces.Repositories;
 using YoutubeClone.Shared.Constants;
 using YoutubeClone.Shared.Helpers;
@@ -33,35 +34,37 @@ namespace YoutubeClone.Application.Services
         {
             var user = await GetUser(id);
 
-            var delete = await reposity.Delete(user);
+            user.DeletedAt = DateTimeHelper.UtcNow();
 
-            return ResponsesHelper.Create(delete);
+            await reposity.Update(user);
+
+            return ResponsesHelper.Create(true);
         }
 
         public async Task<GenericResponse<List<UserDto>>> GetAll(FilterUserRequest model)
         {
             var queryable = reposity.Queryable();
 
-            if (string.IsNullOrWhiteSpace(model.UserName))
+            if (!string.IsNullOrWhiteSpace(model.UserName))
             {
                 queryable = queryable.Where(x => x.UserName.Contains(model.UserName ?? ""));
             }
-            if (string.IsNullOrWhiteSpace(model.DisplayName))
+            if (!string.IsNullOrWhiteSpace(model.DisplayName))
             {
                 queryable = queryable.Where(x => x.DisplayName.Contains(model.DisplayName ?? ""));
             }
-            if (string.IsNullOrWhiteSpace(model.Email))
+            if (!string.IsNullOrWhiteSpace(model.Email))
             {
                 queryable = queryable.Where(x => x.Email.Contains(model.Email ?? ""));
             }
             // hacer birthday
-            if (string.IsNullOrWhiteSpace(model.Location))
+            if (!string.IsNullOrWhiteSpace(model.Location))
             {
                 queryable = queryable.Where(x => x.Location.Contains(model.Location ?? ""));
             }
 
             // Paginación y consulta
-            var users = queryable.Take(model.Limit).Skip(model.Offset).ToList();
+            var users = queryable.Skip(model.Offset).Take(model.Limit).ToList();
 
             // Mapear usuarios
             List<UserDto> mapped = [];
@@ -82,7 +85,7 @@ namespace YoutubeClone.Application.Services
         private async Task<UserAccount> GetUser(Guid id)
         {
             return await reposity.Get(id)
-                ?? throw new Exception(ResponseConstants.USER_NOT_EXIST);
+                ?? throw new NotFoundException(ResponseConstants.USER_NOT_EXIST);
         }
 
         private static UserDto Map(UserAccount user)

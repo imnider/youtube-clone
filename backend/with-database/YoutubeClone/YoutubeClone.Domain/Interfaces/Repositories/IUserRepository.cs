@@ -10,6 +10,5 @@ namespace YoutubeClone.Domain.Interfaces.Repositories
         Task<bool> IfExist(Guid userId);
         Task<bool> IfExist(string userName);
         Task<UserAccount> Update(UserAccount userAccount);
-        Task<bool> Delete(UserAccount userAccount);
     }
 }

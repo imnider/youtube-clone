@@ -27,6 +27,15 @@ namespace YoutubeClone.WebApp.Extensions
         }
 
         /// <summary>
+        /// Método que sirve para añadir todos los middlewares
+        /// </summary>
+        /// <param name="services"></param>
+        public static void AddMiddlewares(this IServiceCollection services)
+        {
+            services.AddScoped<ErrorEventHandler>();
+        }
+
+        /// <summary>
         /// Método que añade lo esencial que necesita nuestra aplicacion para funcionar
         /// </summary>
         /// <param name="services"></param>
@@ -43,6 +52,9 @@ namespace YoutubeClone.WebApp.Extensions
 
             // Services
             services.AddServices();
+
+            // Middlewares
+            services.AddMiddlewares();
 
         }
     }

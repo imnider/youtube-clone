@@ -2,7 +2,7 @@
 {
     public class BaseRequest
     {
-        public int Limit = 100;
-        public int Offset = 0;
+        public int Limit { get; set; } = 100;
+        public int Offset { get; set; } = 0;
     }
 }
