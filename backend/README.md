@@ -39,6 +39,7 @@ El Backend de este Bootcamp es desarrollado con .NET
 		- Context
 		- Entities
 		- Repositories
+- Exceptions
 - Interfaces
 	- Repositories
 
@@ -49,11 +50,12 @@ El Backend de este Bootcamp es desarrollado con .NET
 
 ### Carpetas de la Capa WebApp
 - Extensions
+- Middlewares
 
 ### Referencias de Proyecto
 - Capa Application: Shared y Domain
 - Capa Infrastructure: Domain
-- Capa WebApp: Application y Domain
+- Capa WebApp: Application, Domain e Infrastructure
 
 ### Instalar Paquetes NuGet
 - Capa Domain
@@ -70,13 +72,17 @@ El Backend de este Bootcamp es desarrollado con .NET
 1. Cache.cs - `Shared/` (Solo para caché)
 2. DataTimeHelper.cs - `Shared/Helpers/`
 3. ValidationConstants.cs - `Shared/Constants/`
-4. GenericResponse.cs - `Application/Models/Responses/`
-5. ResponsesHelper.cs - `Application/Helpers/`
-6. EntityDto.cs - `Application/Models/DTOs/`
-7. Requests - `Application/Models/Requests/EntityName/`
-8. IService - `Application/Interface/Services/`
-9. Service - `Application/Services/`
-10. Controller - `WebApp/Controllers/`
+4. ResponseConstants.cs - `Shared/Constants/`
+5. GenericResponse.cs - `Application/Models/Responses/`
+6. ResponsesHelper.cs - `Application/Helpers/`
+7. BaseRequest.cs `Application/Requests`
+8. DTOs - `Application/Models/DTOs/`
+9. Requests - `Application/Models/Requests/EntityName/`
+10. IServices - `Application/Interface/Services/`
+11. Services - `Application/Services/`
+12. Exceptions - `Domain/Exceptions`
+13. ErrorHandlerMiddleware.cs `WebApp/Middlewares`
+14. Controllers - `WebApp/Controllers/`
 
 ## Enlaces Útiles
 - https://http.cat
