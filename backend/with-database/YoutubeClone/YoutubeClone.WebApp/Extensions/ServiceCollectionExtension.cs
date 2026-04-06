@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Services;
 using YoutubeClone.Domain.Database.SqlServer.Context;
 using YoutubeClone.Domain.Interfaces.Repositories;
 using YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories;
+using YoutubeClone.Shared.Constants;
 using YoutubeClone.WebApp.Middlewares;
 
 namespace YoutubeClone.WebApp.Extensions
@@ -38,6 +40,16 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddScoped<ErrorHandleMiddleware>();
         }
 
+        public static void AddLogging(this IServiceCollection services)
+        {
+            services.AddSerilog();
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File(Path.Combine(Directory.GetCurrentDirectory(), "logs", "log.txt"), rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+        }
+
         /// <summary>
         /// Método que añade lo esencial que necesita nuestra aplicacion para funcionar
         /// </summary>
@@ -48,7 +60,11 @@ namespace YoutubeClone.WebApp.Extensions
             {
                 option.InvalidModelStateResponseFactory = (errorContext) =>
                 {
-                    var response = ResponsesHelper.Create(string.Join("", errorContext.ModelState.Values.SelectMany(x => x.Errors.Select(y => y.ErrorMessage))));
+                    var errors = errorContext.ModelState.Values.SelectMany(value => value.Errors.Select(error => error.ErrorMessage).ToList()).ToList();
+                    var response = ResponsesHelper.Create(
+                        data: ValidationConstants.VALIDATION_MESSAGE,
+                        errors: errors,
+                        message: ValidationConstants.VALIDATION_MESSAGE);
                     return new BadRequestObjectResult(response);
                 };
             });
@@ -66,6 +82,7 @@ namespace YoutubeClone.WebApp.Extensions
             // Middlewares
             services.AddMiddlewares();
 
+            AddLogging(services);
         }
     }
 }

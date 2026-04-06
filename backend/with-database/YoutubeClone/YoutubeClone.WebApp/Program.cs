@@ -1,6 +1,10 @@
+using Serilog;
 using YoutubeClone.WebApp.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
+
 builder.Services.AddCore(builder.Configuration);
 
 var app = builder.Build();

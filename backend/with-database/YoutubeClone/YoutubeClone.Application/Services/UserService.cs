@@ -27,7 +27,7 @@ namespace YoutubeClone.Application.Services
                 Password = model.Password,
                 CreatedAt = DateTimeHelper.UtcNow()
             });
-            return ResponsesHelper.Create(Map(create), "Usuario creado correctamente.");
+            return ResponsesHelper.Create(Map(create), [], "Usuario creado correctamente.");
         }
 
         public async Task<GenericResponse<bool>> Delete(Guid id)

@@ -1,4 +1,5 @@
 ﻿using YoutubeClone.Application.Helpers;
+using YoutubeClone.Application.Models.Responses;
 using YoutubeClone.Domain.Exceptions;
 
 namespace YoutubeClone.WebApp.Middlewares
@@ -13,22 +14,26 @@ namespace YoutubeClone.WebApp.Middlewares
             }
             catch (NotFoundException exception)
             {
-                var response = ResponsesHelper.Create(exception.Message);
-                context.Response.StatusCode = StatusCodes.Status404NotFound;
-                await context.Response.WriteAsJsonAsync(response);
+                await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status404NotFound));
             }
             catch (BadRequestException exception)
             {
-                var response = ResponsesHelper.Create(exception.Message);
-                context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                await context.Response.WriteAsJsonAsync(response);
+                await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status400BadRequest));
             }
             catch (Exception exception)
             {
-                var response = ResponsesHelper.Create(exception.Message);
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                await context.Response.WriteAsJsonAsync(response);
+                await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status500InternalServerError));
             }
+        }
+
+        public GenericResponse<string> ManageException(HttpContext context, Exception exception, int statusCode)
+        {
+            var response = ResponsesHelper.Create(
+                data: exception.Message,
+                message: exception.Message,
+                errors: [exception.Message]);
+            context.Response.StatusCode = statusCode;
+            return response;
         }
     }
 }
