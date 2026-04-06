@@ -57,7 +57,7 @@ namespace YoutubeClone.Application.Services
             {
                 queryable = queryable.Where(x => x.Email.Contains(model.Email ?? ""));
             }
-            // hacer birthday
+            // validar birthday
             if (!string.IsNullOrWhiteSpace(model.Location))
             {
                 queryable = queryable.Where(x => x.Location.Contains(model.Location ?? ""));
@@ -110,6 +110,9 @@ namespace YoutubeClone.Application.Services
 
             user.UserName = model.UserName ?? user.UserName;
             user.DisplayName = model.DisplayName ?? user.DisplayName;
+            user.Email = model.Email ?? user.Email;
+            user.Birthday = model.Birthday ?? user.Birthday;
+            user.Location = model.Location ?? user.Location;
 
             user.UpdatedAt = DateTimeHelper.UtcNow();
 
