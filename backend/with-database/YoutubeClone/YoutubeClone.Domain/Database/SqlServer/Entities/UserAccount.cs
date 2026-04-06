@@ -21,6 +21,8 @@ public partial class UserAccount
 
     public DateTime CreatedAt { get; set; }
 
+    public DateTime? UpdatedAt { get; set; }
+
     public DateTime? DeletedAt { get; set; }
 
     public virtual ICollection<Channel> Channels { get; set; } = new List<Channel>();

@@ -19,6 +19,8 @@ public partial class Comment
 
     public DateTime CreatedAt { get; set; }
 
+    public DateTime? UpdatedAt { get; set; }
+
     public DateTime? DeletedAt { get; set; }
 
     public virtual ICollection<Comment> InverseParentComment { get; set; } = new List<Comment>();

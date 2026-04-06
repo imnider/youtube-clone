@@ -15,6 +15,10 @@ public partial class Playlist
 
     public DateTime CreatedAt { get; set; }
 
+    public DateTime? UpdatedAt { get; set; }
+
+    public DateTime? DeletedAt { get; set; }
+
     public virtual Channel? Channel { get; set; }
 
     public virtual CreatorType CreatorType { get; set; } = null!;

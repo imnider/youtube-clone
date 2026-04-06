@@ -23,6 +23,8 @@ public partial class Channel
 
     public DateTime CreatedAt { get; set; }
 
+    public DateTime? UpdatedAt { get; set; }
+
     public DateTime? DeletedAt { get; set; }
 
     public virtual ICollection<Playlist> Playlists { get; set; } = new List<Playlist>();

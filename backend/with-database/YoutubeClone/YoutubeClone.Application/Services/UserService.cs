@@ -111,7 +111,7 @@ namespace YoutubeClone.Application.Services
             user.UserName = model.UserName ?? user.UserName;
             user.DisplayName = model.DisplayName ?? user.DisplayName;
 
-            // tambien hacerlo con la variabe UpdatedAt
+            user.UpdatedAt = DateTimeHelper.UtcNow();
 
             var update = await reposity.Update(user);
 
