@@ -16,6 +16,8 @@ namespace YoutubeClone.Application.Services
     {
         public async Task<GenericResponse<UserDto>> Create(CreateUserRequest model)
         {
+            //throw new Exception("No se pudo conectar con la base de datos");
+
             var create = await reposity.Create(new UserAccount
             {
                 UserId = Guid.NewGuid(),
