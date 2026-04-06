@@ -1,4 +1,5 @@
-﻿using YoutubeClone.Domain.Exceptions;
+﻿using YoutubeClone.Application.Helpers;
+using YoutubeClone.Domain.Exceptions;
 
 namespace YoutubeClone.WebApp.Middlewares
 {
@@ -12,8 +13,21 @@ namespace YoutubeClone.WebApp.Middlewares
             }
             catch (NotFoundException exception)
             {
-
-                throw;
+                var response = ResponsesHelper.Create(exception.Message);
+                context.Response.StatusCode = StatusCodes.Status404NotFound;
+                await context.Response.WriteAsJsonAsync(response);
+            }
+            catch (BadRequestException exception)
+            {
+                var response = ResponsesHelper.Create(exception.Message);
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await context.Response.WriteAsJsonAsync(response);
+            }
+            catch (Exception exception)
+            {
+                var response = ResponsesHelper.Create(exception.Message);
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                await context.Response.WriteAsJsonAsync(response);
             }
         }
     }

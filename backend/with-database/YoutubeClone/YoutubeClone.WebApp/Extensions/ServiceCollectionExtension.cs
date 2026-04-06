@@ -1,4 +1,6 @@
-﻿using YoutubeClone.Application.Interfaces.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using YoutubeClone.Application.Helpers;
+using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Services;
 using YoutubeClone.Domain.Database.SqlServer.Context;
 using YoutubeClone.Domain.Interfaces.Repositories;
@@ -42,7 +44,14 @@ namespace YoutubeClone.WebApp.Extensions
         /// <param name="services"></param>
         public static void AddCore(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers();
+            services.AddControllers().ConfigureApiBehaviorOptions(option =>
+            {
+                option.InvalidModelStateResponseFactory = (errorContext) =>
+                {
+                    var response = ResponsesHelper.Create(string.Join("", errorContext.ModelState.Values.SelectMany(x => x.Errors.Select(y => y.ErrorMessage))));
+                    return new BadRequestObjectResult(response);
+                };
+            });
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             services.AddOpenApi();
 
