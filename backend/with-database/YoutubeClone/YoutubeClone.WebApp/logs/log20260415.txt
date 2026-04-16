@@ -388,3 +388,94 @@ Error Number:2628,State:1,Class:16
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2026-04-15 22:31:53.982 -05:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-15 22:31:54.012 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-15 22:31:54.102 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-15 22:31:54.151 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-15 22:31:54.216 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 22:31:54.217 -05:00 [INF] Hosting environment: Development
+2026-04-15 22:31:54.219 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-15 22:31:54.376 -05:00 [INF] Executed DbCommand (20ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (Size = 50), @p3='?' (Size = 255), @p4='?' (Size = 30), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime2), @p7='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [UserAccount] ([Birthday], [DeletedAt], [DisplayName], [Email], [Location], [Password], [UpdatedAt], [UserName])
+OUTPUT INSERTED.[UserID], INSERTED.[CreatedAt]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-04-15 22:32:10.996 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-15 22:32:11.055 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-15 22:32:13.545 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-15 22:32:13.572 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-15 22:32:13.723 -05:00 [INF] Executed DbCommand (13ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-15 22:32:13.833 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:32:13.855 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 274.1477ms
+2026-04-15 22:32:13.866 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-15 22:32:13.879 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 2886.7108ms
+2026-04-15 22:32:36.886 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-15 22:32:36.895 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-15 22:32:36.898 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-15 22:32:37.023 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-15 22:32:37.028 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:32:37.031 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 129.0687ms
+2026-04-15 22:32:37.033 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-15 22:32:37.035 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 149.1354ms
+2026-04-15 22:33:07.565 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-15 22:33:07.577 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-15 22:33:07.578 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-15 22:33:07.592 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-15 22:33:07.596 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:33:07.600 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 17.8097ms
+2026-04-15 22:33:07.602 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-15 22:33:07.604 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 38.7859ms
+2026-04-15 22:33:09.493 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-15 22:33:09.497 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:09.506 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-15 22:33:09.514 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:33:09.517 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 7.3704ms
+2026-04-15 22:33:09.519 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:09.521 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 27.9496ms
+2026-04-15 22:33:10.916 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-15 22:33:10.921 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:10.923 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-15 22:33:10.927 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:33:10.929 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 3.0844ms
+2026-04-15 22:33:10.932 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:10.933 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 17.2436ms
+2026-04-15 22:33:11.868 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-15 22:33:11.873 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:11.875 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-15 22:33:11.878 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:33:11.880 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 2.6979ms
+2026-04-15 22:33:11.883 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:11.885 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 16.1417ms
+2026-04-15 22:33:12.718 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-15 22:33:12.722 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:12.724 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-15 22:33:12.727 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:33:12.730 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 3.4477ms
+2026-04-15 22:33:12.732 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:12.734 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 16.0437ms
+2026-04-15 22:33:13.574 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-15 22:33:13.579 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:13.581 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-15 22:33:13.585 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-15 22:33:13.587 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 3.6233ms
+2026-04-15 22:33:13.590 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-15 22:33:13.592 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 17.9383ms
