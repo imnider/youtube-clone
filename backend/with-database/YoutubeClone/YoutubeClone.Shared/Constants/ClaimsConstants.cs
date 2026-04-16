@@ -2,6 +2,6 @@
 {
     public static class ClaimsConstants
     {
-        public const string COLLABORATOR_ID = "CollaboratorId";
+        public const string USER_ID = "UserId";
     }
 }
