@@ -24,7 +24,7 @@ namespace YoutubeClone.WebApp.Middlewares
             catch (Exception exception)
             {
                 var traceId = Guid.NewGuid();
-                var message = ResponseConstants.ERROR_UNEXPECTED(traceId.ToString());
+                var message = ResponseConstants.ErrorUnexpected(traceId.ToString());
 
                 logger.LogCritical("Se generó una excepción no controlada, con el traceId: {traceId}. Excepción: {exception}", traceId, exception);
 
