@@ -52,6 +52,18 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
             }
         }
 
+        public async Task<bool> HasCreated()
+        {
+            try
+            {
+                return await context.UserAccounts.AnyAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public async Task<bool> IfExist(Guid userId)
         {
             try
