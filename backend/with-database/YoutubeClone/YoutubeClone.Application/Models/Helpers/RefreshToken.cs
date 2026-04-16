@@ -2,7 +2,7 @@
 {
     public class RefreshToken
     {
-        public required Guid CollaboratorId { get; set; }
+        public required Guid UserId { get; set; }
         public required TimeSpan ExpirationInDays { get; set; }
     }
 }
