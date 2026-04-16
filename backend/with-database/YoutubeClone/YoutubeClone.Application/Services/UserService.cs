@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using Microsoft.Extensions.Configuration;
+using System.Globalization;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
@@ -7,18 +8,19 @@ using YoutubeClone.Application.Models.Responses;
 using YoutubeClone.Domain.Database.SqlServer.Entities;
 using YoutubeClone.Domain.Exceptions;
 using YoutubeClone.Domain.Interfaces.Repositories;
+using YoutubeClone.Shared;
 using YoutubeClone.Shared.Constants;
 using YoutubeClone.Shared.Helpers;
 
 namespace YoutubeClone.Application.Services
 {
-    public class UserService(IUserRepository reposity) : IUserService
+    public class UserService(IUserRepository repository, IConfiguration configuration) : IUserService
     {
         public async Task<GenericResponse<UserDto>> Create(CreateUserRequest model)
         {
             //throw new Exception("No se pudo conectar con la base de datos");
 
-            var create = await reposity.Create(new UserAccount
+            var create = await repository.Create(new UserAccount
             {
                 UserId = Guid.NewGuid(),
                 UserName = model.UserName.ToLower(),
@@ -38,14 +40,14 @@ namespace YoutubeClone.Application.Services
 
             user.DeletedAt = DateTimeHelper.UtcNow();
 
-            await reposity.Update(user);
+            await repository.Update(user);
 
             return ResponsesHelper.Create(true);
         }
 
         public async Task<GenericResponse<List<UserDto>>> GetAll(FilterUserRequest model)
         {
-            var queryable = reposity.Queryable();
+            var queryable = repository.Queryable();
 
             if (!string.IsNullOrWhiteSpace(model.UserName))
             {
@@ -118,9 +120,35 @@ namespace YoutubeClone.Application.Services
 
             user.UpdatedAt = DateTimeHelper.UtcNow();
 
-            var update = await reposity.Update(user);
+            var update = await repository.Update(user);
 
             return ResponsesHelper.Create(Map(user));
+        }
+
+        public async Task CreateFirstUser()
+        {
+            var hasCreated = await repository.HasCreated();
+            if (hasCreated) return;
+
+            var userName = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_USERNAME]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.FIRST_APP_TIME_USER_USERNAME));
+
+            var displayName = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_DISPLAYNAME]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.FIRST_APP_TIME_USER_DISPLAYNAME));
+
+            var email = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_EMAIL]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.FIRST_APP_TIME_USER_EMAIL));
+
+            var password = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_PASSWORD]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.FIRST_APP_TIME_USER_PASSWORD));
+
+            await repository.Create(new UserAccount
+            {
+                UserName = userName,
+                DisplayName = displayName,
+                Email = email,
+                Password = Hasher.HashPassword(password)
+            });
         }
     }
 }
