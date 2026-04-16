@@ -39,6 +39,19 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
             }
         }
 
+        public async Task<UserAccount?> Get(string email)
+        {
+            try
+            {
+                return await context.UserAccounts.FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<bool> IfExist(Guid userId)
         {
             try
