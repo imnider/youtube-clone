@@ -6,9 +6,11 @@ using Serilog.Sinks.MSSqlServer;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Services;
+using YoutubeClone.Domain.Database;
 using YoutubeClone.Domain.Database.SqlServer.Context;
 using YoutubeClone.Domain.Exceptions;
 using YoutubeClone.Domain.Interfaces.Repositories;
+using YoutubeClone.Infrastructure.Persistence.SqlServer;
 using YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories;
 using YoutubeClone.Shared.Constants;
 using YoutubeClone.WebApp.Middlewares;
@@ -35,7 +37,10 @@ namespace YoutubeClone.WebApp.Extensions
         /// <param name="services"></param>
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         /// <summary>

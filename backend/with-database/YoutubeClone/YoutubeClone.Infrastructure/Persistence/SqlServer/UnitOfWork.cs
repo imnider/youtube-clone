@@ -6,19 +6,18 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly YoutubeCloneContext _context;
-        public IUserRepository _userRepository { get; set; }
+        private readonly YoutubeCloneContext context;
+        public IUserRepository userRepository { get; set; }
 
-        public UnitOfWork(YoutubeCloneContext context, IUserRepository userRepository)
+        public UnitOfWork(YoutubeCloneContext _context, IUserRepository _userRepository)
         {
-            _userRepository = userRepository;
-            _context = context;
+            userRepository = _userRepository;
+            context = _context;
         }
 
         public async Task SaveChangesAsync()
         {
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
     }
-}
 }

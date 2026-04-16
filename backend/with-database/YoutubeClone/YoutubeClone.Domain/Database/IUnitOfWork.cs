@@ -4,7 +4,7 @@ namespace YoutubeClone.Domain.Database
 {
     public interface IUnitOfWork
     {
-        IUserRepository _userRepository { get; set; }
+        IUserRepository userRepository { get; set; }
         Task SaveChangesAsync();
     }
 }

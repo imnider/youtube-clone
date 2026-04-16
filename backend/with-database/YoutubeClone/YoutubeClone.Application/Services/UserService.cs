@@ -6,22 +6,22 @@ using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
 using YoutubeClone.Application.Models.Requests.Users;
 using YoutubeClone.Application.Models.Responses;
+using YoutubeClone.Domain.Database;
 using YoutubeClone.Domain.Database.SqlServer.Entities;
 using YoutubeClone.Domain.Exceptions;
-using YoutubeClone.Domain.Interfaces.Repositories;
 using YoutubeClone.Shared;
 using YoutubeClone.Shared.Constants;
 using YoutubeClone.Shared.Helpers;
 
 namespace YoutubeClone.Application.Services
 {
-    public class UserService(IUserRepository repository, IConfiguration configuration) : IUserService
+    public class UserService(IUnitOfWork uow, IConfiguration configuration) : IUserService
     {
         public async Task<GenericResponse<UserDto>> Create(CreateUserRequest model)
         {
             //throw new Exception("No se pudo conectar con la base de datos");
 
-            var create = await repository.Create(new UserAccount
+            var create = await uow.userRepository.Create(new UserAccount
             {
                 UserId = Guid.NewGuid(),
                 UserName = model.UserName.ToLower(),
@@ -32,6 +32,9 @@ namespace YoutubeClone.Application.Services
                 Password = model.Password,
                 CreatedAt = DateTimeHelper.UtcNow()
             });
+
+            await uow.SaveChangesAsync();
+
             return ResponsesHelper.Create(Map(create), [], "Usuario creado correctamente.");
         }
 
@@ -41,14 +44,14 @@ namespace YoutubeClone.Application.Services
 
             user.DeletedAt = DateTimeHelper.UtcNow();
 
-            await repository.Update(user);
+            await uow.userRepository.Update(user);
 
             return ResponsesHelper.Create(true);
         }
 
         public async Task<GenericResponse<List<UserDto>>> GetAll(FilterUserRequest model)
         {
-            var queryable = repository.Queryable();
+            var queryable = uow.userRepository.Queryable();
 
             if (!string.IsNullOrWhiteSpace(model.UserName))
             {
@@ -89,7 +92,7 @@ namespace YoutubeClone.Application.Services
 
         private async Task<UserAccount> GetUser(Guid id)
         {
-            return await repository.Get(id)
+            return await uow.userRepository.Get(id)
                 ?? throw new NotFoundException(ResponseConstants.USER_NOT_EXIST);
         }
 
@@ -121,7 +124,9 @@ namespace YoutubeClone.Application.Services
 
             user.UpdatedAt = DateTimeHelper.UtcNow();
 
-            var update = await repository.Update(user);
+            var update = await uow.userRepository.Update(user);
+
+            await uow.SaveChangesAsync();
 
             return ResponsesHelper.Create(Map(user));
         }
@@ -130,10 +135,10 @@ namespace YoutubeClone.Application.Services
         {
             Console.WriteLine("Entrando a CreateFirstUser");
 
-            var count = await repository.Queryable().CountAsync();
+            var count = await uow.userRepository.Queryable().CountAsync();
             Console.WriteLine($"Usuarios activos: {count}");
 
-            var hasCreated = await repository.HasCreated();
+            var hasCreated = await uow.userRepository.HasCreated();
             Console.WriteLine($"HasCreated: {hasCreated}");
 
             //var hasCreated = await repository.HasCreated();
@@ -154,7 +159,7 @@ namespace YoutubeClone.Application.Services
             var password = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_PASSWORD]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.FIRST_APP_TIME_USER_PASSWORD));
 
-            await repository.Create(new UserAccount
+            await uow.userRepository.Create(new UserAccount
             {
                 UserName = userName,
                 DisplayName = displayName,
@@ -162,6 +167,8 @@ namespace YoutubeClone.Application.Services
                 Email = email,
                 Password = Hasher.HashPassword(password)
             });
+
+            await uow.SaveChangesAsync();
         }
     }
 }

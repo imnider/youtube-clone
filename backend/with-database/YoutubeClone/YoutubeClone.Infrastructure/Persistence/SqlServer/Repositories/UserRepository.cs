@@ -15,9 +15,6 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
                 // insert
                 await context.UserAccounts.AddAsync(userAccount);
 
-                // execution // commit
-                await context.SaveChangesAsync();
-
                 return userAccount;
             }
             catch (Exception)
@@ -100,7 +97,6 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
             try
             {
                 context.UserAccounts.Update(userAccount);
-                await context.SaveChangesAsync();
 
                 return userAccount;
             }
