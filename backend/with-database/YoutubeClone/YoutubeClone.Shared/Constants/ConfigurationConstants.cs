@@ -5,7 +5,7 @@
         // First app
         public const string FIRST_APP_TIME_USER_USERNAME = "FirstAppTime:User:UserName";
         public const string FIRST_APP_TIME_USER_DISPLAYNAME = "FirstAppTime:User:DisplayName";
-        public const string FIRST_APP_TIME_USER_LOCATION = "FirstApp:User:Location";
+        public const string FIRST_APP_TIME_USER_LOCATION = "FirstAppTime:User:Location";
         public const string FIRST_APP_TIME_USER_EMAIL = "FirstAppTime:User:Email";
         public const string FIRST_APP_TIME_USER_PASSWORD = "FirstAppTime:User:Password";
 

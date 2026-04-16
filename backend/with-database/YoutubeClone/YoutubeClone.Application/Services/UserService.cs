@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Globalization;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
@@ -88,7 +89,7 @@ namespace YoutubeClone.Application.Services
 
         private async Task<UserAccount> GetUser(Guid id)
         {
-            return await reposity.Get(id)
+            return await repository.Get(id)
                 ?? throw new NotFoundException(ResponseConstants.USER_NOT_EXIST);
         }
 
@@ -127,7 +128,15 @@ namespace YoutubeClone.Application.Services
 
         public async Task CreateFirstUser()
         {
+            Console.WriteLine("Entrando a CreateFirstUser");
+
+            var count = await repository.Queryable().CountAsync();
+            Console.WriteLine($"Usuarios activos: {count}");
+
             var hasCreated = await repository.HasCreated();
+            Console.WriteLine($"HasCreated: {hasCreated}");
+
+            //var hasCreated = await repository.HasCreated();
             if (hasCreated) return;
 
             var userName = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_USERNAME]
@@ -135,6 +144,9 @@ namespace YoutubeClone.Application.Services
 
             var displayName = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_DISPLAYNAME]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.FIRST_APP_TIME_USER_DISPLAYNAME));
+
+            var Location = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_LOCATION]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.FIRST_APP_TIME_USER_LOCATION));
 
             var email = configuration[ConfigurationConstants.FIRST_APP_TIME_USER_EMAIL]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.FIRST_APP_TIME_USER_EMAIL));
@@ -146,6 +158,7 @@ namespace YoutubeClone.Application.Services
             {
                 UserName = userName,
                 DisplayName = displayName,
+                Location = Location,
                 Email = email,
                 Password = Hasher.HashPassword(password)
             });

@@ -20,7 +20,7 @@ app.UseMiddleware<ErrorHandleMiddleware>();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
