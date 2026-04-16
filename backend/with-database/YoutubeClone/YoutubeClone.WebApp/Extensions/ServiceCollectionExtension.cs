@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Services;
 using YoutubeClone.Domain.Database.SqlServer.Context;
+using YoutubeClone.Domain.Exceptions;
 using YoutubeClone.Domain.Interfaces.Repositories;
 using YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories;
 using YoutubeClone.Shared.Constants;
@@ -20,6 +23,9 @@ namespace YoutubeClone.WebApp.Extensions
         /// <param name="services"></param>
         public static void AddServices(this IServiceCollection services)
         {
+            services.AddScoped<ICacheService, CacheService>();
+            services.AddScoped<IAuthServices, AuthService>();
+
             services.AddScoped<IUserService, UserService>();
         }
 
@@ -60,10 +66,68 @@ namespace YoutubeClone.WebApp.Extensions
         }
 
         /// <summary>
-        /// Método que añade lo esencial que necesita nuestra aplicacion para funcionar
+        /// Método para inicializar el primer usuario de la aplicación
         /// </summary>
         /// <param name="services"></param>
-        public static void AddCore(this IServiceCollection services, IConfiguration configuration)
+        /// <returns></returns>
+        public async static Task Initialize(this IServiceCollection services)
+        {
+            var provider = services.BuildServiceProvider();
+            var scope = provider.CreateAsyncScope();
+
+            var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+            await userService.CreateFirstUser();
+        }
+
+        public static void AddAuth(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAuthentication(builder =>
+            {
+                builder.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                builder.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(builder =>
+            {
+                var tokenConfiguration = TokenHelper.Configuration(configuration);
+
+                builder.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = tokenConfiguration.Issuer,
+                    ValidateAudience = true,
+                    ValidAudience = tokenConfiguration.Audience,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = tokenConfiguration.SecurityKey,
+                    ClockSkew = TimeSpan.Zero
+                };
+
+                builder.Events = new JwtBearerEvents
+                {
+                    OnChallenge = async context =>
+                    {
+                        throw new UnauthorizedException(ResponseConstants.AUTH_TOKEN_NOT_FOUND);
+                    }
+                };
+            });
+
+            services.AddAuthorization();
+        }
+
+        /// <summary>
+        /// Método que agrega el caché de la aplicación
+        /// </summary>
+        /// <param name="services"></param>
+        public static void AddCache(this IServiceCollection services)
+        {
+            services.AddMemoryCache();
+        }
+
+        /// <summary>
+        /// Método que agrega todoa la extensión
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        public static async Task AddCore(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers().ConfigureApiBehaviorOptions(option =>
             {
@@ -77,7 +141,7 @@ namespace YoutubeClone.WebApp.Extensions
                     return new BadRequestObjectResult(response);
                 };
             });
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
             services.AddOpenApi();
 
             services.AddSqlServer<YoutubeCloneContext>(configuration.GetConnectionString("Database"));
@@ -91,7 +155,17 @@ namespace YoutubeClone.WebApp.Extensions
             // Middlewares
             services.AddMiddlewares();
 
-            AddLogging(services);
+            // Serilog
+            services.AddLogging();
+
+            //Cache
+            services.AddCache();
+
+            // Auth
+            services.AddAuth(configuration);
+
+            // Inicializar primer usuario
+            await Initialize(services);
         }
     }
 }

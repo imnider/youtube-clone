@@ -1,0 +1,8 @@
+2026-04-15 21:11:56.742 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-15 21:11:56.798 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-15 21:11:56.799 -05:00 [INF] Hosting environment: Development
+2026-04-15 21:11:56.800 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-15 21:11:57.197 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/Controllers/ - null null
+2026-04-15 21:11:57.846 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-15 21:11:57.854 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/Controllers/ - 404 null null 658.0121ms
+2026-04-15 21:11:57.866 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5288/Controllers/, Response status code: 404
