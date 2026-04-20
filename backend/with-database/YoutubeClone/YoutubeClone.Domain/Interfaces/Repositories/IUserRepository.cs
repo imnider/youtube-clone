@@ -2,15 +2,10 @@
 
 namespace YoutubeClone.Domain.Interfaces.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IGenericRepository<UserAccount>
     {
-        Task<UserAccount> Create(UserAccount userAccount);
         Task<UserAccount?> Get(Guid userId);
         Task<UserAccount?> Get(string email);
-        IQueryable<UserAccount> Queryable();
-        Task<bool> IfExist(Guid userId);
-        Task<bool> IfExist(string userName);
-        Task<UserAccount> Update(UserAccount userAccount);
         Task<bool> HasCreated();
     }
 }
