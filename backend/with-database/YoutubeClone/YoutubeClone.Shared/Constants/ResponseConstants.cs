@@ -4,6 +4,7 @@
     {
         // Usuarios
         public const string USER_NOT_EXIST = "El usuario no existe";
+        public const string USER_EMAIL_TAKED = "Ya existe un usuario con este correo";
 
         // Canales
         public const string CHANNEL_NOT_EXIST = "El canal no existe";

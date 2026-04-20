@@ -20,8 +20,9 @@ namespace YoutubeClone.Application.Services
     {
         public async Task<GenericResponse<UserDto>> Create(CreateUserRequest model)
         {
-            var password = Generate.RandomText(32);
+            await ValidateEmailIfExists(model.Email);
 
+            var password = Generate.RandomText(32);
 
             var create = await uow.userRepository.Create(new UserAccount
             {
@@ -54,12 +55,16 @@ namespace YoutubeClone.Application.Services
 
             await uow.userRepository.Update(user);
 
+            await uow.SaveChangesAsync();
+
             return ResponseHelper.Create(true);
         }
 
         public async Task<GenericResponse<List<UserDto>>> GetAll(FilterUserRequest model)
         {
             var queryable = uow.userRepository.Queryable();
+
+            queryable = queryable.Where(x => x.DeletedAt == null);
 
             if (!string.IsNullOrWhiteSpace(model.UserName))
             {
@@ -191,6 +196,14 @@ namespace YoutubeClone.Application.Services
             var uuid = Guid.Parse(value);
             return await uow.userRepository.Get(uuid)
                 ?? throw new NotFoundException(ResponseConstants.USER_NOT_EXIST);
+        }
+
+        private async Task ValidateEmailIfExists(string email)
+        {
+            if (await uow.userRepository.IfExists(x => x.Email == email))
+            {
+                throw new BadRequestException(ResponseConstants.USER_EMAIL_TAKED);
+            }
         }
     }
 }
