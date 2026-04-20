@@ -34,7 +34,7 @@ namespace YoutubeClone.WebApp.Middlewares
 
         public GenericResponse<string> ManageException(HttpContext context, Exception exception, int statusCode, string? message = null)
         {
-            var response = ResponsesHelper.Create(
+            var response = ResponseHelper.Create(
                 data: message ?? exception.Message,
                 message: message ?? exception.Message,
                 errors: [message ?? exception.Message]);

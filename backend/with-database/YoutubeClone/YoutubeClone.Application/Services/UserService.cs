@@ -42,7 +42,7 @@ namespace YoutubeClone.Application.Services
 
             await uow.SaveChangesAsync();
 
-            return ResponsesHelper.Create(Map(create), [], "Usuario creado correctamente.");
+            return ResponseHelper.Create(Map(create), [], "Usuario creado correctamente.");
         }
 
         public async Task<GenericResponse<bool>> Delete(Guid id)
@@ -53,7 +53,7 @@ namespace YoutubeClone.Application.Services
 
             await uow.userRepository.Update(user);
 
-            return ResponsesHelper.Create(true);
+            return ResponseHelper.Create(true);
         }
 
         public async Task<GenericResponse<List<UserDto>>> GetAll(FilterUserRequest model)
@@ -88,13 +88,13 @@ namespace YoutubeClone.Application.Services
                 mapped.Add(Map(user));
             }
 
-            return ResponsesHelper.Create(mapped);
+            return ResponseHelper.Create(mapped);
         }
 
         public async Task<GenericResponse<UserDto>> GetById(Guid id)
         {
             var user = await GetUser(id);
-            return ResponsesHelper.Create(Map(user));
+            return ResponseHelper.Create(Map(user));
         }
 
         private async Task<UserAccount> GetUser(Guid id)
@@ -135,7 +135,7 @@ namespace YoutubeClone.Application.Services
 
             await uow.SaveChangesAsync();
 
-            return ResponsesHelper.Create(Map(user));
+            return ResponseHelper.Create(Map(user));
         }
 
         public async Task CreateFirstUser()

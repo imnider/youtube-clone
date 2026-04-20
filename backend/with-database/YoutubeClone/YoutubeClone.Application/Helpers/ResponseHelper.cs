@@ -2,7 +2,7 @@
 
 namespace YoutubeClone.Application.Helpers
 {
-    public static class ResponsesHelper
+    public static class ResponseHelper
     {
         public static GenericResponse<T> Create<T>(T data, List<string>? errors = null, string? message = null)
         {

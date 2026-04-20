@@ -28,7 +28,7 @@ namespace YoutubeClone.Application.Services
             var token = TokenHelper.Create(userAccount.UserId, configuration, cacheService);
             var refreshToken = TokenHelper.CreateRefresh(userAccount.UserId, configuration, cacheService);
 
-            return ResponsesHelper.Create(new LoginAuthResponse
+            return ResponseHelper.Create(new LoginAuthResponse
             {
                 Token = token,
                 RefreshToken = refreshToken
@@ -45,7 +45,7 @@ namespace YoutubeClone.Application.Services
 
             cacheService.Delete(CacheHelper.AuthRefreshTokenKey(model.RefreshToken));
 
-            return ResponsesHelper.Create(new LoginAuthResponse
+            return ResponseHelper.Create(new LoginAuthResponse
             {
                 Token = token,
                 RefreshToken = refreshToken
