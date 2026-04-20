@@ -145,7 +145,7 @@ namespace YoutubeClone.WebApp.Extensions
                 option.InvalidModelStateResponseFactory = (errorContext) =>
                 {
                     var errors = errorContext.ModelState.Values.SelectMany(value => value.Errors.Select(error => error.ErrorMessage).ToList()).ToList();
-                    var response = ResponsesHelper.Create(
+                    var response = ResponseHelper.Create(
                         data: ValidationConstants.VALIDATION_MESSAGE,
                         errors: errors,
                         message: ValidationConstants.VALIDATION_MESSAGE);

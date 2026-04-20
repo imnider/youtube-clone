@@ -257,3 +257,1116 @@ VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
 2026-04-19 21:10:43.059 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Create (YoutubeClone.WebApp) in 6524.882ms
 2026-04-19 21:10:43.061 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Create (YoutubeClone.WebApp)'
 2026-04-19 21:10:43.063 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 200 null application/json; charset=utf-8 6538.6745ms
+2026-04-19 21:28:44.936 -05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 21:28:44.950 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 21:28:44.994 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 21:28:45.016 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 21:28:45.033 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 21:28:45.047 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 21:28:45.048 -05:00 [INF] Hosting environment: Development
+2026-04-19 21:28:45.049 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 21:28:47.920 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:28:47.964 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 21:28:47.991 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 21:28:48.003 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:28:48.018 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 8.3673ms
+2026-04-19 21:28:48.025 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 21:28:48.042 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 400 null application/json; charset=utf-8 123.9137ms
+2026-04-19 21:28:51.710 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 21:28:51.717 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:28:51.726 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:28:51.795 -05:00 [INF] Executed DbCommand (10ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 21:28:51.857 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:28:51.863 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 132.8016ms
+2026-04-19 21:28:51.866 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:28:51.874 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 164.4149ms
+2026-04-19 21:28:54.412 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:28:54.420 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 21:28:54.422 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:28:54.426 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 2.1004ms
+2026-04-19 21:28:54.428 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 21:28:54.430 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 400 null application/json; charset=utf-8 17.8877ms
+2026-04-19 21:30:09.194 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 21:30:09.210 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 21:30:09.253 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 21:30:09.274 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 21:30:09.287 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 21:30:09.304 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 21:30:09.305 -05:00 [INF] Hosting environment: Development
+2026-04-19 21:30:09.306 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 21:30:11.433 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:30:11.476 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 21:30:11.505 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 21:30:11.515 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "60571c99-e4c6-48d4-8864-60d04b034861". Excepción: YoutubeClone.Domain.Exceptions.UnauthorizedException: El token no es correcto o expiró
+   at YoutubeClone.WebApp.Extensions.ServiceCollectionExtension.<>c.<<AddAuth>b__6_2>d.MoveNext() in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Extensions\ServiceCollectionExtension.cs:line 126
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.ChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-04-19 21:30:11.530 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 500 null application/json; charset=utf-8 98.2964ms
+2026-04-19 21:30:26.280 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 21:30:26.289 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:30:26.307 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:30:26.390 -05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 21:30:26.464 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:30:26.474 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 160.6463ms
+2026-04-19 21:30:26.476 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:30:26.486 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 205.6825ms
+2026-04-19 21:30:31.120 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:30:31.127 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 21:30:31.130 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "b61ba8a7-4766-4cf2-bc6b-d990e60407de". Excepción: YoutubeClone.Domain.Exceptions.UnauthorizedException: El token no es correcto o expiró
+   at YoutubeClone.WebApp.Extensions.ServiceCollectionExtension.<>c.<<AddAuth>b__6_2>d.MoveNext() in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Extensions\ServiceCollectionExtension.cs:line 126
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.ChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-04-19 21:30:31.132 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 500 null application/json; charset=utf-8 12.312ms
+2026-04-19 21:30:37.709 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users?limit=10&offset=0 - null null
+2026-04-19 21:30:37.750 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:30:37.759 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:30:37.839 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:30:37.841 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:30:37.858 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:30:37.865 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:30:37.875 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 113.0453ms
+2026-04-19 21:30:37.877 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:30:37.879 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users?limit=10&offset=0 - 200 null application/json; charset=utf-8 169.4653ms
+2026-04-19 21:30:40.852 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:30:40.857 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 21:30:40.859 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "19598ab1-526d-4baf-a058-7e0e8a90fe6d". Excepción: YoutubeClone.Domain.Exceptions.UnauthorizedException: El token no es correcto o expiró
+   at YoutubeClone.WebApp.Extensions.ServiceCollectionExtension.<>c.<<AddAuth>b__6_2>d.MoveNext() in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Extensions\ServiceCollectionExtension.cs:line 126
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.ChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-04-19 21:30:40.862 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 500 null application/json; charset=utf-8 9.8665ms
+2026-04-19 21:31:11.139 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 21:31:11.144 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:31:11.145 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:31:11.159 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 21:31:11.163 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:31:11.165 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 16.6891ms
+2026-04-19 21:31:11.167 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:31:11.168 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 29.0494ms
+2026-04-19 21:31:14.447 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-19 21:31:14.450 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:14.455 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:31:14.465 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:31:14.468 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 9.5033ms
+2026-04-19 21:31:14.469 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:14.471 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 24.142ms
+2026-04-19 21:31:16.567 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-19 21:31:16.571 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:16.573 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:31:16.576 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:31:16.578 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 3.1796ms
+2026-04-19 21:31:16.580 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:16.581 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 14.2499ms
+2026-04-19 21:31:17.506 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-19 21:31:17.509 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:17.511 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:31:17.515 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:31:17.517 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 2.7806ms
+2026-04-19 21:31:17.518 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:17.520 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 14.4625ms
+2026-04-19 21:31:18.376 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-19 21:31:18.380 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:18.381 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:31:18.385 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:31:18.387 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 2.9813ms
+2026-04-19 21:31:18.389 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:18.391 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 14.8214ms
+2026-04-19 21:31:19.211 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-19 21:31:19.214 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:19.216 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:31:19.220 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:31:19.222 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 2.6437ms
+2026-04-19 21:31:19.223 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:19.225 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 14.0119ms
+2026-04-19 21:31:19.947 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-19 21:31:19.951 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:19.952 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:31:19.955 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:31:19.957 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 3.0508ms
+2026-04-19 21:31:19.959 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 21:31:19.961 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 13.9129ms
+2026-04-19 21:31:24.235 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 21:31:24.238 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:31:24.240 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:31:24.246 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 21:31:24.249 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:31:24.251 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 8.9007ms
+2026-04-19 21:31:24.254 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:31:24.256 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 20.9684ms
+2026-04-19 21:31:31.808 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:31:31.812 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 21:31:31.814 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "a4217764-6240-4bd5-94ec-227de1127150". Excepción: YoutubeClone.Domain.Exceptions.UnauthorizedException: El token no es correcto o expiró
+   at YoutubeClone.WebApp.Extensions.ServiceCollectionExtension.<>c.<<AddAuth>b__6_2>d.MoveNext() in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Extensions\ServiceCollectionExtension.cs:line 126
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.ChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-04-19 21:31:31.817 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 500 null application/json; charset=utf-8 8.1729ms
+2026-04-19 21:45:12.080 -05:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 21:45:12.099 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 21:45:12.147 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 21:45:12.181 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 21:45:12.189 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 21:45:12.218 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 21:45:12.219 -05:00 [INF] Hosting environment: Development
+2026-04-19 21:45:12.220 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 21:45:12.247 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 21:45:12.277 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 21:45:12.296 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:45:12.309 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 21:45:12.365 -05:00 [INF] Executed DbCommand (7ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 21:45:12.421 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 21:45:12.432 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 118.582ms
+2026-04-19 21:45:12.437 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 21:45:12.445 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 198.5656ms
+2026-04-19 21:45:17.541 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users?limit=10&offset=0 - null null
+2026-04-19 21:45:17.588 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:45:17.597 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:45:17.688 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:45:17.690 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:45:17.705 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:45:17.712 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:45:17.723 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 123.048ms
+2026-04-19 21:45:17.725 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:45:17.727 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users?limit=10&offset=0 - 200 null application/json; charset=utf-8 186.1154ms
+2026-04-19 21:45:24.347 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users?limit=10&offset=0 - null null
+2026-04-19 21:45:24.357 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:45:24.359 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:45:24.371 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:45:24.375 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:45:24.377 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 15.5662ms
+2026-04-19 21:45:24.379 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:45:24.381 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users?limit=10&offset=0 - 200 null application/json; charset=utf-8 33.5241ms
+2026-04-19 21:45:28.185 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:45:28.191 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 21:45:28.203 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "16a19329-5612-4b20-8ac2-bb1fb3114391". Excepción: YoutubeClone.Domain.Exceptions.UnauthorizedException: El token no es correcto o expiró
+   at YoutubeClone.WebApp.Extensions.ServiceCollectionExtension.<>c.<<AddAuth>b__6_2>d.MoveNext() in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Extensions\ServiceCollectionExtension.cs:line 126
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.ChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-04-19 21:45:28.209 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 500 null application/json; charset=utf-8 23.2277ms
+2026-04-19 21:46:04.374 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 21:46:04.379 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:46:04.381 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:46:04.392 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:46:04.395 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:46:04.398 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 14.2774ms
+2026-04-19 21:46:04.400 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:46:04.401 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 26.6325ms
+2026-04-19 21:46:09.800 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 21:46:09.812 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 21:46:09.854 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 21:46:09.879 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 21:46:09.891 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 21:46:09.909 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 21:46:09.910 -05:00 [INF] Hosting environment: Development
+2026-04-19 21:46:09.911 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 21:46:15.407 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 21:46:15.444 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 21:46:15.521 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:46:15.540 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:46:15.585 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:46:15.587 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:46:15.619 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:46:15.675 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:46:15.697 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 149.7217ms
+2026-04-19 21:46:15.704 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:46:15.713 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 307.4451ms
+2026-04-19 21:46:21.264 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 21:46:21.273 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:46:21.274 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:46:21.346 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:46:21.350 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:46:21.353 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 76.0029ms
+2026-04-19 21:46:21.355 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:46:21.357 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 93.0544ms
+2026-04-19 21:47:54.112 -05:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 21:47:54.126 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 21:47:54.166 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 21:47:54.190 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 21:47:54.202 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 21:47:54.220 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 21:47:54.221 -05:00 [INF] Hosting environment: Development
+2026-04-19 21:47:54.222 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 21:47:58.957 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 21:47:58.998 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 21:47:59.073 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:47:59.093 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:47:59.136 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:47:59.138 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:47:59.168 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:47:59.223 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:47:59.244 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 145.6438ms
+2026-04-19 21:47:59.252 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:47:59.261 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 305.4569ms
+2026-04-19 21:48:00.347 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 21:48:00.357 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:48:00.359 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:48:00.433 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:48:00.437 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:48:00.440 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 78.161ms
+2026-04-19 21:48:00.442 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:48:00.444 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 96.1972ms
+2026-04-19 21:48:05.803 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:48:05.813 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 21:48:05.853 -05:00 [FTL] Se generó una excepción no controlada, con el traceId: "407a67fc-caf7-44c1-8d85-fccfbf1b0dbd". Excepción: YoutubeClone.Domain.Exceptions.UnauthorizedException: El token no es correcto o expiró
+   at YoutubeClone.WebApp.Extensions.ServiceCollectionExtension.<>c.<<AddAuth>b__6_2>d.MoveNext() in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Extensions\ServiceCollectionExtension.cs:line 126
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.ChallengeAsync(AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authentication.AuthenticationService.ChallengeAsync(HttpContext context, String scheme, AuthenticationProperties properties)
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationMiddlewareResultHandler.<>c__DisplayClass0_0.<<HandleAsync>g__Handle|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at YoutubeClone.WebApp.Middlewares.ErrorHandleMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp\Middlewares\ErrorHandleMiddleware.cs:line 14
+2026-04-19 21:48:05.860 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 500 null application/json; charset=utf-8 57.3167ms
+2026-04-19 21:58:46.177 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 21:58:46.192 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 21:58:46.234 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 21:58:46.260 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 21:58:46.274 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 21:58:46.293 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 21:58:46.294 -05:00 [INF] Hosting environment: Development
+2026-04-19 21:58:46.295 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 21:58:48.106 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 21:58:48.149 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 21:58:48.225 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:58:48.243 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:58:48.288 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:58:48.290 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 21:58:48.323 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:58:48.378 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:58:48.399 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 149.8086ms
+2026-04-19 21:58:48.406 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:58:48.416 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 311.8193ms
+2026-04-19 21:58:51.373 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 21:58:51.383 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 21:58:51.391 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 18.7677ms
+2026-04-19 21:58:55.975 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 21:58:55.982 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:58:55.984 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 21:58:56.055 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 21:58:56.059 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 21:58:56.061 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 73.6792ms
+2026-04-19 21:58:56.063 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 21:58:56.065 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 90.3093ms
+2026-04-19 22:00:54.320 -05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:00:54.333 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:00:54.378 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:00:54.401 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:00:54.415 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:00:54.431 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:00:54.431 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:00:54.432 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:00:58.001 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:00:58.031 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:00:58.077 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:00:58.089 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:00:58.115 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:00:58.117 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:00:58.137 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:00:58.169 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:00:58.181 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 88.1918ms
+2026-04-19 22:00:58.187 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:00:58.193 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 193.1925ms
+2026-04-19 22:07:08.497 -05:00 [INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:07:08.670 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:07:08.735 -05:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:07:08.827 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:07:08.969 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:07:09.026 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:07:09.028 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:07:09.029 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:07:16.714 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 22:07:16.770 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:09:13.387 -05:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:09:13.401 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:09:13.444 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:09:13.466 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:09:13.480 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:09:13.497 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:09:13.498 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:09:13.499 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:09:27.450 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:09:27.491 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:09:27.557 -05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenInvalidIssuerException: IDX10205: Issuer validation failed. Issuer: 'http://localhost:5063'. Did not match: validationParameters.ValidIssuer: 'http://localhost:5288' or validationParameters.ValidIssuers: 'null' or validationParameters.ConfigurationManager.CurrentConfiguration.Issuer: 'Null'. For more details, see https://aka.ms/IdentityModel/issuer-validation. 
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateIssuerAsync(String issuer, SecurityToken securityToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-04-19 22:09:27.563 -05:00 [INF] Bearer was not authenticated. Failure message: IDX10205: Issuer validation failed. Issuer: 'http://localhost:5063'. Did not match: validationParameters.ValidIssuer: 'http://localhost:5288' or validationParameters.ValidIssuers: 'null' or validationParameters.ConfigurationManager.CurrentConfiguration.Issuer: 'Null'. For more details, see https://aka.ms/IdentityModel/issuer-validation. 
+2026-04-19 22:09:27.570 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:09:27.590 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 401 null application/json; charset=utf-8 140.9956ms
+2026-04-19 22:09:30.700 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:09:30.710 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:09:30.712 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 12.5645ms
+2026-04-19 22:09:33.370 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 22:09:33.378 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:09:33.397 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 22:09:33.477 -05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:09:33.554 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:09:33.562 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 158.7414ms
+2026-04-19 22:09:33.564 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:09:33.573 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 203.2991ms
+2026-04-19 22:09:36.677 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:09:36.689 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:09:36.697 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:09:36.774 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:09:36.776 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:09:36.792 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:09:36.799 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:09:36.808 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 107.525ms
+2026-04-19 22:09:36.810 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:09:36.812 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 135.3469ms
+2026-04-19 22:09:39.291 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:09:39.296 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:09:39.298 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 6.3265ms
+2026-04-19 22:09:43.473 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:09:43.477 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:09:43.479 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:09:43.488 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:09:43.491 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:09:43.493 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 12.3167ms
+2026-04-19 22:09:43.495 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:09:43.497 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 24.3872ms
+2026-04-19 22:09:46.227 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:09:46.232 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:09:46.233 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 6.6945ms
+2026-04-19 22:09:51.733 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:09:51.737 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:09:51.740 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:09:51.752 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:09:51.756 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:09:51.758 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 16.0694ms
+2026-04-19 22:09:51.760 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:09:51.761 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 28.1157ms
+2026-04-19 22:09:56.585 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/renew - application/json 128
+2026-04-19 22:09:56.589 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 22:09:56.594 -05:00 [INF] Route matched with {action = "Renew", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Renew(YoutubeClone.Application.Models.Requests.Auth.RenewAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 22:09:56.602 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:09:56.604 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp) in 6.6088ms
+2026-04-19 22:09:56.606 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Renew (YoutubeClone.WebApp)'
+2026-04-19 22:09:56.607 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/renew - 200 null application/json; charset=utf-8 22.1212ms
+2026-04-19 22:10:03.896 -05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:10:03.920 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:10:03.969 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:10:04.002 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:10:04.008 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:10:04.035 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:10:04.036 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:10:04.037 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:10:20.553 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:20.591 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:10:20.666 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:20.683 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:20.729 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:10:20.731 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:10:20.763 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:20.819 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:20.843 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 153.4336ms
+2026-04-19 22:10:20.850 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:20.859 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 307.8542ms
+2026-04-19 22:10:21.859 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:21.868 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:21.870 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:21.940 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:21.945 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:21.947 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 74.6359ms
+2026-04-19 22:10:21.949 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:21.952 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 93.017ms
+2026-04-19 22:10:22.828 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:22.838 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:22.839 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:22.851 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:22.855 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:22.857 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 15.2612ms
+2026-04-19 22:10:22.859 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:22.861 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 33.0888ms
+2026-04-19 22:10:23.768 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:23.774 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:23.775 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:23.782 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:23.785 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:23.787 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 9.7075ms
+2026-04-19 22:10:23.789 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:23.791 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 23.1432ms
+2026-04-19 22:10:26.531 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:26.536 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:26.537 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:26.544 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:26.547 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:26.550 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 9.6198ms
+2026-04-19 22:10:26.552 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:26.554 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 22.9925ms
+2026-04-19 22:10:27.269 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:27.275 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:27.276 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:27.283 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:27.287 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:27.289 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 10.192ms
+2026-04-19 22:10:27.291 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:27.293 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 24.2261ms
+2026-04-19 22:10:27.938 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:27.943 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:27.945 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:27.952 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:27.956 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:27.958 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 10.2234ms
+2026-04-19 22:10:27.960 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:27.962 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 23.6309ms
+2026-04-19 22:10:28.502 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:28.506 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:28.509 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:28.515 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:28.519 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:28.521 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 10.3528ms
+2026-04-19 22:10:28.524 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:28.526 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 23.3913ms
+2026-04-19 22:10:29.060 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:29.064 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:29.065 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:29.071 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:29.074 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:29.076 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 8.5048ms
+2026-04-19 22:10:29.079 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:29.081 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 20.9505ms
+2026-04-19 22:10:31.741 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:10:31.746 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:10:31.755 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 13.7458ms
+2026-04-19 22:10:34.342 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:10:34.345 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:34.346 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:10:34.353 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:10:34.356 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:10:34.358 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 9.3225ms
+2026-04-19 22:10:34.360 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:10:34.362 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 20.3147ms
+2026-04-19 22:11:25.545 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:11:25.558 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:11:25.602 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:11:25.624 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:11:25.636 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:11:25.655 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:11:25.656 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:11:25.657 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:11:30.879 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:11:30.927 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:11:31.013 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:11:31.031 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:11:31.076 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:11:31.078 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:11:31.108 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:11:31.164 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:11:31.187 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 147.6054ms
+2026-04-19 22:11:31.194 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:11:31.203 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 326.1332ms
+2026-04-19 22:11:34.099 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:11:34.108 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:11:34.118 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 18.9899ms
+2026-04-19 22:12:18.666 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 22:12:18.671 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:12:18.676 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 22:12:18.737 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:12:18.749 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:12:18.752 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 74.3615ms
+2026-04-19 22:12:18.754 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:12:18.757 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 91.0402ms
+2026-04-19 22:12:21.199 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:12:21.203 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:12:21.204 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 5.1567ms
+2026-04-19 22:12:55.011 -05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:12:55.032 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:12:55.076 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:12:55.106 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:12:55.118 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:12:55.146 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:12:55.147 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:12:55.147 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:12:58.174 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:12:58.219 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:12:58.248 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:12:58.271 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 98.4073ms
+2026-04-19 22:13:00.908 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:13:00.966 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:13:00.985 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:13:01.028 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:13:01.030 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:13:01.062 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:13:01.117 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:13:01.132 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 140.395ms
+2026-04-19 22:13:01.134 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:13:01.142 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 233.8013ms
+2026-04-19 22:13:20.052 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 198
+2026-04-19 22:13:20.059 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:13:20.061 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 401 null application/json; charset=utf-8 9.0741ms
+2026-04-19 22:13:23.412 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 198
+2026-04-19 22:13:23.417 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:13:23.418 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 401 null application/json; charset=utf-8 6.4097ms
+2026-04-19 22:13:26.099 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 22:13:26.103 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:13:26.109 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 22:13:26.209 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:13:26.225 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:13:26.230 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 116.678ms
+2026-04-19 22:13:26.232 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:13:26.235 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 136.5914ms
+2026-04-19 22:13:32.561 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 198
+2026-04-19 22:13:32.565 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:13:32.567 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 401 null application/json; charset=utf-8 6.0509ms
+2026-04-19 22:13:33.676 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 198
+2026-04-19 22:13:33.681 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:13:33.683 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 401 null application/json; charset=utf-8 6.381ms
+2026-04-19 22:13:34.430 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 198
+2026-04-19 22:13:34.434 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:13:34.436 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 401 null application/json; charset=utf-8 5.4988ms
+2026-04-19 22:13:35.113 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 198
+2026-04-19 22:13:35.117 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:13:35.119 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 401 null application/json; charset=utf-8 6.0693ms
+2026-04-19 22:16:15.368 -05:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:16:15.412 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:16:15.469 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:16:15.515 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:16:15.539 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:16:15.573 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:16:15.575 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:16:15.577 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:16:16.971 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:16:17.010 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:16:17.086 -05:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2026-04-19 22:16:17.088 -05:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2026-04-19 22:16:17.093 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 405 0 null 124.0907ms
+2026-04-19 22:16:20.406 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/all - null null
+2026-04-19 22:16:20.417 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:16:20.436 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:16:20.482 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:16:20.484 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:16:20.514 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:16:20.568 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:16:20.591 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 148.3688ms
+2026-04-19 22:16:20.593 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:16:20.601 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/all - 200 null application/json; charset=utf-8 195.047ms
+2026-04-19 22:21:04.277 -05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:21:04.292 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:21:04.337 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:21:04.361 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:21:04.375 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:21:04.393 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:21:04.394 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:21:04.395 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:21:07.518 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:21:07.558 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:21:07.632 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:07.646 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:21:07.726 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:21:07.795 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:21:07.820 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 168.2009ms
+2026-04-19 22:21:07.828 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:07.839 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 322.5273ms
+2026-04-19 22:21:15.997 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 22:21:16.005 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:21:16.015 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 22:21:16.113 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:21:16.129 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:21:16.134 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 115.9093ms
+2026-04-19 22:21:16.136 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:21:16.139 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 141.8837ms
+2026-04-19 22:21:23.322 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:21:23.331 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:23.333 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:21:23.343 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:21:23.347 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:21:23.349 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 13.6583ms
+2026-04-19 22:21:23.351 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:23.353 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 30.8809ms
+2026-04-19 22:21:32.614 -05:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+2026-04-19 22:21:32.632 -05:00 [INF] User profile is available. Using 'C:\Users\imnider\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-19 22:21:32.671 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [UserAccount] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-04-19 22:21:32.694 -05:00 [INF] Now listening on: http://localhost:5288
+2026-04-19 22:21:32.704 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmailTemplateId], [e].[Body], [e].[CreatedAt], [e].[IsActive], [e].[Name], [e].[Subject], [e].[UpdatedAt]
+FROM [EmailTemplates] AS [e]
+2026-04-19 22:21:32.724 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-19 22:21:32.725 -05:00 [INF] Hosting environment: Development
+2026-04-19 22:21:32.726 -05:00 [INF] Content root path: D:\Documents\workspace\youtube-clone\backend\with-database\YoutubeClone\YoutubeClone.WebApp
+2026-04-19 22:21:34.730 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:21:34.777 -05:00 [WRN] Failed to determine the https port for redirect.
+2026-04-19 22:21:34.860 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:34.876 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:21:34.948 -05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:21:35.003 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:21:35.026 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 142.9242ms
+2026-04-19 22:21:35.035 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:35.048 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 318.6907ms
+2026-04-19 22:21:36.056 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:21:36.065 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:36.067 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:21:36.138 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:21:36.143 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:21:36.146 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 75.934ms
+2026-04-19 22:21:36.148 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:36.150 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 94.0768ms
+2026-04-19 22:21:45.838 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:21:45.845 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:45.847 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:21:45.858 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:21:45.862 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:21:45.865 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 15.1595ms
+2026-04-19 22:21:45.867 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:21:45.868 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 30.52ms
+2026-04-19 22:21:57.511 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:21:57.516 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:21:57.527 -05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(YoutubeClone.Application.Models.Requests.Users.FilterUserRequest) on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:21:57.550 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:21:57.552 -05:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-04-19 22:21:57.568 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[DeletedAt] IS NULL
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-04-19 22:21:57.573 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[System.Collections.Generic.List`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-04-19 22:21:57.577 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp) in 47.4472ms
+2026-04-19 22:21:57.579 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.GetAll (YoutubeClone.WebApp)'
+2026-04-19 22:21:57.581 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 200 null application/json; charset=utf-8 70.329ms
+2026-04-19 22:22:01.023 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:22:01.027 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:22:01.029 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:22:01.035 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:22:01.038 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:22:01.040 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 8.6913ms
+2026-04-19 22:22:01.042 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:22:01.044 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 21.1538ms
+2026-04-19 22:24:24.408 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:24:24.412 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:24:24.420 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 11.874ms
+2026-04-19 22:24:27.828 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users - null null
+2026-04-19 22:24:27.830 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:24:27.832 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users - 401 null application/json; charset=utf-8 4.5872ms
+2026-04-19 22:24:31.212 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:24:31.216 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:24:31.218 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 401 null application/json; charset=utf-8 5.2564ms
+2026-04-19 22:24:34.081 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/users - application/json 198
+2026-04-19 22:24:34.085 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-19 22:24:34.086 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/users - 401 null application/json; charset=utf-8 5.5815ms
+2026-04-19 22:24:39.597 -05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5288/api/auth/login - application/json 71
+2026-04-19 22:24:39.601 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:24:39.606 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(YoutubeClone.Application.Models.Requests.Auth.LoginAuthRequest) on controller YoutubeClone.WebApp.Controllers.AuthController (YoutubeClone.WebApp).
+2026-04-19 22:24:39.634 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[Email] = @__email_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:24:39.647 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.Responses.Auth.LoginAuthResponse, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:24:39.651 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp) in 43.2165ms
+2026-04-19 22:24:39.654 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.AuthController.Login (YoutubeClone.WebApp)'
+2026-04-19 22:24:39.655 -05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5288/api/auth/login - 200 null application/json; charset=utf-8 57.6032ms
+2026-04-19 22:24:44.117 -05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5288/api/users/me - null null
+2026-04-19 22:24:44.120 -05:00 [INF] Executing endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:24:44.122 -05:00 [INF] Route matched with {action = "Me", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller YoutubeClone.WebApp.Controllers.UsersController (YoutubeClone.WebApp).
+2026-04-19 22:24:44.128 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserID], [u].[Birthday], [u].[CreatedAt], [u].[DeletedAt], [u].[DisplayName], [u].[Email], [u].[Location], [u].[Password], [u].[UpdatedAt], [u].[UserName]
+FROM [UserAccount] AS [u]
+WHERE [u].[UserID] = @__userId_0 AND [u].[DeletedAt] IS NULL
+2026-04-19 22:24:44.131 -05:00 [INF] Executing OkObjectResult, writing value of type 'YoutubeClone.Application.Models.Responses.GenericResponse`1[[YoutubeClone.Application.Models.DTOs.UserDto, YoutubeClone.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-19 22:24:44.133 -05:00 [INF] Executed action YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp) in 8.2198ms
+2026-04-19 22:24:44.135 -05:00 [INF] Executed endpoint 'YoutubeClone.WebApp.Controllers.UsersController.Me (YoutubeClone.WebApp)'
+2026-04-19 22:24:44.136 -05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5288/api/users/me - 200 null application/json; charset=utf-8 19.4678ms

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Globalization;
+using System.Security.Claims;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.DTOs;
@@ -176,6 +177,20 @@ namespace YoutubeClone.Application.Services
             });
 
             await uow.SaveChangesAsync();
+        }
+
+        public async Task<GenericResponse<UserDto>> Me(Claim claim)
+        {
+            var executor = await GetExecutor(claim.Value);
+            return ResponseHelper.Create(Map(executor));
+        }
+
+        // METODOS PRIVADOS
+        private async Task<UserAccount> GetExecutor(string value)
+        {
+            var uuid = Guid.Parse(value);
+            return await uow.userRepository.Get(uuid)
+                ?? throw new NotFoundException(ResponseConstants.USER_NOT_EXIST);
         }
     }
 }

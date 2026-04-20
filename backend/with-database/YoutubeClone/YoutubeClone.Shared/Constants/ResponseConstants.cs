@@ -12,6 +12,7 @@
         public const string AUTH_TOKEN_NOT_FOUND = "El token no es correcto o expiró";
         public const string AUTH_USER_OR_PASSWORD_NOT_FOUND = "Usuario o contraseña incorrectos";
         public const string AUTH_REFRESH_TOKEN_NOT_FOUND = "El token para refrescar la sesión expiró, no existe o es incorrecto";
+        public const string AUTH_CLAIM_USER_NOT_FOUND = "No pudo ser validada la identidad del usuario";
 
         public static string ErrorUnexpected(string traceId)
         {
