@@ -15,11 +15,12 @@ using YoutubeClone.Shared.Helpers;
 
 namespace YoutubeClone.Application.Services
 {
-    public class UserService(IUnitOfWork uow, IConfiguration configuration) : IUserService
+    public class UserService(IUnitOfWork uow, IConfiguration configuration, SMTP smtp, IEmailTemplateService emailTemplateService) : IUserService
     {
         public async Task<GenericResponse<UserDto>> Create(CreateUserRequest model)
         {
-            //throw new Exception("No se pudo conectar con la base de datos");
+            var password = Generate.RandomText(32);
+
 
             var create = await uow.userRepository.Create(new UserAccount
             {
@@ -29,9 +30,15 @@ namespace YoutubeClone.Application.Services
                 Email = model.Email.ToLower(),
                 Birthday = model.Birthday,
                 Location = model.Location,
-                Password = model.Password,
+                Password = Hasher.HashPassword(password),
                 CreatedAt = DateTimeHelper.UtcNow()
             });
+
+            var template = await emailTemplateService.Get(EmailTemplateNameConstants.USER_REGISTER, new Dictionary<string, string>
+            {
+                { "password", password }
+            });
+            await smtp.Send(model.Email, template.Subject, template.Body);
 
             await uow.SaveChangesAsync();
 

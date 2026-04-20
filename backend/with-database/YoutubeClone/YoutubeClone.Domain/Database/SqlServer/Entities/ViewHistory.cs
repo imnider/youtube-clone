@@ -13,6 +13,8 @@ public partial class ViewHistory
 
     public decimal CompletionRate { get; set; }
 
+    public int? WatchedSeconds { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public virtual UserAccount User { get; set; } = null!;

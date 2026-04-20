@@ -21,5 +21,12 @@
 
         // AUTH
         public const string AUTH_REFRESH_TOKEN_EXPIRATION_IN_DAYS = "Auth:RefreshToken:ExpirationDays";
+
+        // SMTP
+        public const string SMTP_HOST = "SMTP:Host";
+        public const string SMTP_FROM = "SMTP:From";
+        public const string SMTP_PORT = "SMTP:Port";
+        public const string SMTP_USER = "SMTP:User";
+        public const string SMTP_PASSWORD = "SMTP:Password";
     }
 }

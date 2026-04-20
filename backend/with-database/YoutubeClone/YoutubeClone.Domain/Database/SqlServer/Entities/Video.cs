@@ -19,6 +19,8 @@ public partial class Video
 
     public string ThumbnailUrl { get; set; } = null!;
 
+    public string VideoUrl { get; set; } = null!;
+
     public bool AgeRestriction { get; set; }
 
     public DateTime PublishedAt { get; set; }
@@ -33,6 +35,8 @@ public partial class Video
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
+    public virtual ICollection<PlaylistVideo> PlaylistVideos { get; set; } = new List<PlaylistVideo>();
+
     public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
 
     public virtual VideoAccessibility VideoAccessibility { get; set; } = null!;
@@ -40,8 +44,6 @@ public partial class Video
     public virtual ICollection<VideoReaction> VideoReactions { get; set; } = new List<VideoReaction>();
 
     public virtual ICollection<ViewHistory> ViewHistories { get; set; } = new List<ViewHistory>();
-
-    public virtual ICollection<Playlist> Playlists { get; set; } = new List<Playlist>();
 
     public virtual ICollection<Tag> Tags { get; set; } = new List<Tag>();
 }

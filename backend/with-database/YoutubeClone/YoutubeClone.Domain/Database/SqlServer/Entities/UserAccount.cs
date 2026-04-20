@@ -33,6 +33,8 @@ public partial class UserAccount
 
     public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
 
+    public virtual ICollection<UserAccountRole> UserAccountRoles { get; set; } = new List<UserAccountRole>();
+
     public virtual ICollection<VideoReaction> VideoReactions { get; set; } = new List<VideoReaction>();
 
     public virtual ICollection<ViewHistory> ViewHistories { get; set; } = new List<ViewHistory>();

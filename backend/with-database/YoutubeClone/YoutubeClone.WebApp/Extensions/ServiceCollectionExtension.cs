@@ -5,6 +5,7 @@ using Serilog;
 using Serilog.Sinks.MSSqlServer;
 using YoutubeClone.Application.Helpers;
 using YoutubeClone.Application.Interfaces.Services;
+using YoutubeClone.Application.Models.Services;
 using YoutubeClone.Application.Services;
 using YoutubeClone.Domain.Database;
 using YoutubeClone.Domain.Database.SqlServer.Context;
@@ -12,6 +13,7 @@ using YoutubeClone.Domain.Exceptions;
 using YoutubeClone.Domain.Interfaces.Repositories;
 using YoutubeClone.Infrastructure.Persistence.SqlServer;
 using YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories;
+using YoutubeClone.Shared;
 using YoutubeClone.Shared.Constants;
 using YoutubeClone.WebApp.Middlewares;
 
@@ -19,34 +21,24 @@ namespace YoutubeClone.WebApp.Extensions
 {
     public static class ServiceCollectionExtension
     {
-        /// <summary>
-        /// Método que sirve para añadir todos los servicios de la aplicacion
-        /// </summary>
-        /// <param name="services"></param>
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<IAuthServices, AuthService>();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEmailTemplateService, EmailTemplateService>();
         }
 
-        /// <summary>
-        /// Método que sirve para añadir todos los respositorios de la aplicación
-        /// </summary>
-        /// <param name="services"></param>
         public static void AddRepositories(this IServiceCollection services)
         {
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
         }
 
-        /// <summary>
-        /// Método que sirve para añadir todos los middlewares
-        /// </summary>
-        /// <param name="services"></param>
         public static void AddMiddlewares(this IServiceCollection services)
         {
             services.AddScoped<ErrorHandleMiddleware>();
@@ -70,18 +62,39 @@ namespace YoutubeClone.WebApp.Extensions
                 .CreateLogger();
         }
 
-        /// <summary>
-        /// Método para inicializar el primer usuario de la aplicación
-        /// </summary>
-        /// <param name="services"></param>
-        /// <returns></returns>
+        public async static Task AddSMTP(this IServiceCollection services, IConfiguration configuration)
+        {
+            var host = configuration[ConfigurationConstants.SMTP_HOST]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_HOST));
+
+            var from = configuration[ConfigurationConstants.SMTP_FROM]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_FROM));
+
+            var port = Convert.ToInt32(configuration[ConfigurationConstants.SMTP_PORT] ?? "587");
+
+            var user = configuration[ConfigurationConstants.SMTP_USER]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_USER));
+
+            var password = configuration[ConfigurationConstants.SMTP_PASSWORD]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_PASSWORD));
+
+            var smtp = new SMTP(host, from, port, user, password);
+            services.AddSingleton(smtp);
+        }
+
         public async static Task Initialize(this IServiceCollection services)
         {
+            var templatesData = new EmailTemplateData();
+            services.AddSingleton(templatesData);
+
             var provider = services.BuildServiceProvider();
             var scope = provider.CreateAsyncScope();
 
-            var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
-            await userService.CreateFirstUser();
+            var collaboratorService = scope.ServiceProvider.GetRequiredService<IUserService>();
+            await collaboratorService.CreateFirstUser();
+
+            var emailTemplateService = scope.ServiceProvider.GetRequiredService<IEmailTemplateService>();
+            await emailTemplateService.Init();
         }
 
         public static void AddAuth(this IServiceCollection services, IConfiguration configuration)
@@ -118,22 +131,15 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddAuthorization();
         }
 
-        /// <summary>
-        /// Método que agrega el caché de la aplicación
-        /// </summary>
-        /// <param name="services"></param>
         public static void AddCache(this IServiceCollection services)
         {
             services.AddMemoryCache();
         }
 
-        /// <summary>
-        /// Método que agrega todoa la extensión
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
         public static async Task AddCore(this IServiceCollection services, IConfiguration configuration)
         {
+            await services.AddSMTP(configuration);
+
             services.AddControllers().ConfigureApiBehaviorOptions(option =>
             {
                 option.InvalidModelStateResponseFactory = (errorContext) =>

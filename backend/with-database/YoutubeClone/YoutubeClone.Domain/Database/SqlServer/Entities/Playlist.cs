@@ -13,6 +13,12 @@ public partial class Playlist
 
     public Guid? ChannelId { get; set; }
 
+    public string Title { get; set; } = null!;
+
+    public string? Description { get; set; }
+
+    public bool IsPublic { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
@@ -23,7 +29,7 @@ public partial class Playlist
 
     public virtual CreatorType CreatorType { get; set; } = null!;
 
-    public virtual UserAccount User { get; set; } = null!;
+    public virtual ICollection<PlaylistVideo> PlaylistVideos { get; set; } = new List<PlaylistVideo>();
 
-    public virtual ICollection<Video> Videos { get; set; } = new List<Video>();
+    public virtual UserAccount User { get; set; } = null!;
 }

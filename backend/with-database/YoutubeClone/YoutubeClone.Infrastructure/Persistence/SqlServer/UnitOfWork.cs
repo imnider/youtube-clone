@@ -8,11 +8,15 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer
     {
         private readonly YoutubeCloneContext context;
         public IUserRepository userRepository { get; set; }
+        public IEmailTemplateRepository emailTemplateRepository { get; set; }
 
-        public UnitOfWork(YoutubeCloneContext _context, IUserRepository _userRepository)
+        public UnitOfWork(YoutubeCloneContext _context,
+            IUserRepository _userRepository,
+            IEmailTemplateRepository _emailTemplateRepository)
         {
             userRepository = _userRepository;
             context = _context;
+            emailTemplateRepository = _emailTemplateRepository;
         }
 
         public async Task SaveChangesAsync()
