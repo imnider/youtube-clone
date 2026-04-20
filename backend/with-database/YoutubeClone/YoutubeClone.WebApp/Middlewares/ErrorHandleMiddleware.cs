@@ -21,6 +21,10 @@ namespace YoutubeClone.WebApp.Middlewares
             {
                 await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status400BadRequest));
             }
+            catch (UnauthorizedException exception)
+            {
+                await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status401Unauthorized));
+            }
             catch (Exception exception)
             {
                 var traceId = Guid.NewGuid();
