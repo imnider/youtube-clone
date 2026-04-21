@@ -46,14 +46,18 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddScoped<ErrorHandleMiddleware>();
         }
 
-        public static void AddLogging(this IServiceCollection services)
+        public static void AddLogging(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSerilog();
+
+            var databaseConnectionString = Environment.GetEnvironmentVariable(EnvironmentConstants.CONNECTION_STRING_DATABASE)
+                    ?? configuration[ConfigurationConstants.CONNECTION_STRING_DATABASE];
+            services.AddSqlServer<YoutubeCloneContext>(databaseConnectionString);
 
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
                 .MSSqlServer(
-                    connectionString: "Server=localhost,1433;User=sa;Password=Admin1234@;Database=YoutubeClone;TrustServerCertificate=True;",
+                    connectionString: databaseConnectionString,
                     sinkOptions: new MSSqlServerSinkOptions
                     {
                         TableName = "LogEvents",
@@ -66,18 +70,25 @@ namespace YoutubeClone.WebApp.Extensions
 
         public async static Task AddSMTP(this IServiceCollection services, IConfiguration configuration)
         {
-            var host = configuration[ConfigurationConstants.SMTP_HOST]
+            var host = Environment.GetEnvironmentVariable(EnvironmentConstants.SMTP_HOST)
+                ?? configuration[ConfigurationConstants.SMTP_HOST]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_HOST));
 
-            var from = configuration[ConfigurationConstants.SMTP_FROM]
+            var from = Environment.GetEnvironmentVariable(EnvironmentConstants.SMTP_FROM)
+                ?? configuration[ConfigurationConstants.SMTP_FROM]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_FROM));
 
-            var port = Convert.ToInt32(configuration[ConfigurationConstants.SMTP_PORT] ?? "587");
+            var portValue = Environment.GetEnvironmentVariable(EnvironmentConstants.SMTP_PORT)
+                ?? configuration[ConfigurationConstants.SMTP_PORT];
 
-            var user = configuration[ConfigurationConstants.SMTP_USER]
+            var port = Convert.ToInt32(portValue ?? "587");
+
+            var user = Environment.GetEnvironmentVariable(EnvironmentConstants.SMTP_USER)
+                ?? configuration[ConfigurationConstants.SMTP_USER]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_USER));
 
-            var password = configuration[ConfigurationConstants.SMTP_PASSWORD]
+            var password = Environment.GetEnvironmentVariable(EnvironmentConstants.SMTP_PASSWORD)
+                ?? configuration[ConfigurationConstants.SMTP_PASSWORD]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_PASSWORD));
 
             var smtp = new SMTP(host, from, port, user, password);
@@ -157,7 +168,10 @@ namespace YoutubeClone.WebApp.Extensions
 
             services.AddOpenApi();
 
-            services.AddSqlServer<YoutubeCloneContext>(configuration.GetConnectionString("Database"));
+            // SQL Server
+            var databaseConnectionString = Environment.GetEnvironmentVariable(EnvironmentConstants.CONNECTION_STRING_DATABASE)
+                    ?? configuration[ConfigurationConstants.CONNECTION_STRING_DATABASE];
+            services.AddSqlServer<YoutubeCloneContext>(databaseConnectionString);
 
             // Database - Repositories
             services.AddRepositories();
@@ -169,7 +183,7 @@ namespace YoutubeClone.WebApp.Extensions
             services.AddMiddlewares();
 
             // Serilog
-            services.AddLogging();
+            services.AddLogging(configuration);
 
             //Cache
             services.AddCache();

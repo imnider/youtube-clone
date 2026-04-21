@@ -56,15 +56,15 @@ namespace YoutubeClone.Application.Helpers
 
         public static TokenConfiguration Configuration(IConfiguration configuration)
         {
-            var issuer = Environment.GetEnvironmentVariable(ConfigurationConstants.JWT_ISSUER)
+            var issuer = Environment.GetEnvironmentVariable(EnvironmentConstants.JWT_ISSUER)
                 ?? configuration[ConfigurationConstants.JWT_ISSUER]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.JWT_ISSUER));
 
-            var audience = Environment.GetEnvironmentVariable(ConfigurationConstants.JWT_AUDIENCE)
+            var audience = Environment.GetEnvironmentVariable(EnvironmentConstants.JWT_AUDIENCE)
                 ?? configuration[ConfigurationConstants.JWT_AUDIENCE]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.JWT_AUDIENCE));
 
-            var privateKey = Environment.GetEnvironmentVariable(ConfigurationConstants.JWT_PRIVATE_KEY)
+            var privateKey = Environment.GetEnvironmentVariable(EnvironmentConstants.JWT_PRIVATE_KEY)
                 ?? configuration[ConfigurationConstants.JWT_PRIVATE_KEY]
                 ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.JWT_PRIVATE_KEY));
 
