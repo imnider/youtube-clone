@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YoutubeClone.Application.Interfaces.Services;
 using YoutubeClone.Application.Models.Requests.Auth;
+using YoutubeClone.Application.Models.Responses;
+using YoutubeClone.Application.Models.Responses.Auth;
+using YoutubeClone.WebApp.Helpers;
 
 namespace YoutubeClone.WebApp.Controllers
 {
@@ -9,17 +12,17 @@ namespace YoutubeClone.WebApp.Controllers
     public class AuthController(IAuthServices service) : ControllerBase
     {
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginAuthRequest model)
+        public async Task<GenericResponse<LoginAuthResponse>> Login([FromBody] LoginAuthRequest model)
         {
-            var srv = await service.Login(model);
-            return Ok(srv);
+            var rsp = await service.Login(model);
+            return ResponseStatus.Created(HttpContext, rsp);
         }
 
         [HttpPost("renew")]
-        public async Task<IActionResult> Renew([FromBody] RenewAuthRequest model)
+        public async Task<GenericResponse<LoginAuthResponse>> Renew([FromBody] RenewAuthRequest model)
         {
-            var srv = await service.Renew(model);
-            return Ok(srv);
+            var rsp = await service.Renew(model);
+            return ResponseStatus.Created(HttpContext, rsp);
         }
     }
 }

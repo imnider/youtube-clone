@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YoutubeClone.Application.Interfaces.Services;
+using YoutubeClone.Application.Models.DTOs;
+using YoutubeClone.Application.Models.Responses;
+using YoutubeClone.WebApp.Helpers;
 
 namespace YoutubeClone.WebApp.Controllers
 {
@@ -8,10 +11,10 @@ namespace YoutubeClone.WebApp.Controllers
     public class AppController(IAppService appService) : ControllerBase
     {
         [HttpGet("info")]
-        public async Task<IActionResult> Info()
+        public async Task<GenericResponse<AppInfoDto>> Info()
         {
-            var srv = await appService.Info();
-            return Ok(srv);
+            var rsp = await appService.Info();
+            return ResponseStatus.Ok(HttpContext, rsp);
         }
     }
 }
