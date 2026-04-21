@@ -21,10 +21,10 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.Administrador)]
         public async Task<IActionResult> Create([FromBody] CreateUserRequest model)
         {
-            var rsp = await userService.Create(model);
+            var rsp = await userService.Create(model, UserClaim());
             return Ok(rsp);
         }
 
@@ -45,7 +45,7 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpDelete("{id:guid}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.Administrador)]
         public async Task<IActionResult> Delete(Guid id)
         {
             var rsp = await userService.Delete(id);
@@ -53,10 +53,10 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.Administrador)]
         public async Task<IActionResult> Update(Guid id, UpdateUserRequest model)
         {
-            var rsp = await userService.Update(id, model);
+            var rsp = await userService.Update(id, model, UserClaim());
             return Ok(rsp);
         }
 

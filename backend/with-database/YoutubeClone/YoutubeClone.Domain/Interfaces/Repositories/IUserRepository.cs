@@ -7,5 +7,6 @@ namespace YoutubeClone.Domain.Interfaces.Repositories
         Task<UserAccount?> Get(Guid userId);
         Task<UserAccount?> Get(string email);
         Task<bool> HasCreated();
+        Task<bool> ClearRoles(List<UserAccountRole> roles);
     }
 }

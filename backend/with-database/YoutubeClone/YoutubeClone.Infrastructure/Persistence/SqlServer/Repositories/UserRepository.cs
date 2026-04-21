@@ -8,11 +8,20 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
     public class UserRepository(YoutubeCloneContext context) : GenericRepository<UserAccount>(context), IUserRepository
 
     {
+        public async Task<bool> ClearRoles(List<UserAccountRole> roles)
+        {
+            context.UserAccountRoles.RemoveRange(roles);
+            return true;
+        }
+
         public async Task<UserAccount?> Get(Guid userId)
         {
             try
             {
-                return await context.UserAccounts.FirstOrDefaultAsync(x => x.UserId == userId && x.DeletedAt == null);
+                return await context.UserAccounts
+                    .Include(user => user.UserAccountRoles)
+                    .ThenInclude(userRoles => userRoles.Role)
+                    .FirstOrDefaultAsync(x => x.UserId == userId && x.DeletedAt == null);
             }
             catch (Exception)
             {
@@ -25,7 +34,10 @@ namespace YoutubeClone.Infrastructure.Persistence.SqlServer.Repositories
         {
             try
             {
-                return await context.UserAccounts.FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
+                return await context.UserAccounts
+                    .Include(user => user.UserAccountRoles)
+                    .ThenInclude(userRoles => userRoles.Role)
+                    .FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
             }
             catch (Exception)
             {

@@ -14,14 +14,15 @@ namespace YoutubeClone.Application.Helpers
     public class TokenHelper
     {
         public static readonly Random rnd = new();
-        public static string Create(Guid userId, IConfiguration configuration, ICacheService cache)
+        public static string Create(Guid userId, List<string> roles, IConfiguration configuration, ICacheService cache)
         {
             var tokenConfiguration = Configuration(configuration);
             var signingCredentials = new SigningCredentials(tokenConfiguration.SecurityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {
-                new Claim(ClaimsConstants.USER_ID, userId.ToString())
+                new Claim(ClaimsConstants.USER_ID, userId.ToString()),
+                new Claim(ClaimTypes.Role, roles[0])
             };
 
             var securityToken = new JwtSecurityToken(

@@ -9,6 +9,11 @@
         // Canales
         public const string CHANNEL_NOT_EXIST = "El canal no existe";
 
+        // Roles
+        public static string RoleNotFound(string name) => $"El rol {name} no existe";
+        public static string RoleNotFound(Guid id) => $"El rol con ID: {id} no existe";
+        public const string CANNOT_ASSIGN_THE_ROLE = "No puede asignar el rol que argumentó";
+
         // Auth - Token
         public const string AUTH_TOKEN_NOT_FOUND = "El token no es correcto o expiró";
         public const string AUTH_USER_OR_PASSWORD_NOT_FOUND = "Usuario o contraseña incorrectos";

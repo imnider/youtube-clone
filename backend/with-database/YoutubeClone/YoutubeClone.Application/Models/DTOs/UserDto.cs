@@ -11,5 +11,6 @@
         public string Password { get; set; } = null!;
         public DateTime CreatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
+        public RoleDto Role { get; set; } = null!;
     }
 }
