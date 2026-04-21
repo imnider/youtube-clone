@@ -4,20 +4,14 @@ using YoutubeClone.Domain.Interfaces.Repositories;
 
 namespace YoutubeClone.Infrastructure.Persistence.SqlServer
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork(YoutubeCloneContext _context,
+        IUserRepository _userRepository,
+        IEmailTemplateRepository _emailTemplateRepository)
+        : IUnitOfWork
     {
-        private readonly YoutubeCloneContext context;
-        public IUserRepository userRepository { get; set; }
-        public IEmailTemplateRepository emailTemplateRepository { get; set; }
-
-        public UnitOfWork(YoutubeCloneContext _context,
-            IUserRepository _userRepository,
-            IEmailTemplateRepository _emailTemplateRepository)
-        {
-            userRepository = _userRepository;
-            context = _context;
-            emailTemplateRepository = _emailTemplateRepository;
-        }
+        private readonly YoutubeCloneContext context = _context;
+        public IUserRepository userRepository { get; set; } = _userRepository;
+        public IEmailTemplateRepository emailTemplateRepository { get; set; } = _emailTemplateRepository;
 
         public async Task SaveChangesAsync()
         {
