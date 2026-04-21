@@ -25,6 +25,7 @@ namespace YoutubeClone.WebApp.Extensions
         {
             services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<IAuthServices, AuthService>();
+            services.AddScoped<IAppService, AppService>();
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEmailTemplateService, EmailTemplateService>();
