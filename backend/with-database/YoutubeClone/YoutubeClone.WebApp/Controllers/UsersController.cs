@@ -45,6 +45,7 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpDelete("{id:guid}")]
+        [Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {
             var rsp = await userService.Delete(id);
@@ -52,6 +53,7 @@ namespace YoutubeClone.WebApp.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [Authorize]
         public async Task<IActionResult> Update(Guid id, UpdateUserRequest model)
         {
             var rsp = await userService.Update(id, model);
