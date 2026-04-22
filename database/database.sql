@@ -197,10 +197,6 @@ CREATE TABLE PlaylistVideos(
 );
 GO
 
--- ============================================================
---  Email Templates
--- ============================================================
-
 CREATE TABLE EmailTemplates (
     EmailTemplateId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Name NVARCHAR(100) NOT NULL UNIQUE,
@@ -211,6 +207,10 @@ CREATE TABLE EmailTemplates (
     UpdatedAt DATETIME2 NULL,
 );
 GO
+
+-- ============================================================
+--  DML: Email Templates
+-- ============================================================
 
 INSERT INTO EmailTemplates (Name, Subject, Body) VALUES
 ('USER_REGISTER',
@@ -223,11 +223,19 @@ INSERT INTO EmailTemplates (Name, Subject, Body) VALUES
 
 ('AUTH_LOGIN_FAILED',
  'Intento de inicio de sesión fallido',
- 'Se intentó iniciar sesión en tu cuenta. Si no fuiste tú, contacta al administrador.');
+ 'Se intent  iniciar sesi n en tu cuenta. Si no fuiste tú , contacta al administrador.'),
+
+('AUTH_REGISTER_EMAIL_VERIFICATION',
+'Verificación de correo - YoutubeClone',
+'Hola, para continuar con su proceso de registro, necesita validar su correo electrónico, haciendo clic en el siguiente <a href="{{url}}">enlace</a>.'),
+
+('AUTH_RECOVER_PASSWORD_OTP',
+'Recuperación de contraseña - YoutubeClone',
+'Hola, el siguiente código le permitirá completar el proceso de cambio de contraseña para su cuenta: <strong>{{otp}}</strong>');
 GO
 
 -- ============================================================
---  Roles del sistema YouTube
+--  DML: Roles del sistema
 -- ============================================================
 
 DECLARE @RoleSystem    UNIQUEIDENTIFIER = NEWID();
@@ -236,8 +244,77 @@ DECLARE @RoleCreator   UNIQUEIDENTIFIER = NEWID();
 DECLARE @RoleUser      UNIQUEIDENTIFIER = NEWID();
 
 INSERT INTO Roles (RoleID, Name, Description) VALUES
-(@RoleSystem,  'Sistema',               'Rol interno. Ejecuta procesos automatizados como envío de correos y asignación inicial de roles. No asignable manualmente.'),
+(@RoleSystem,  'Sistema',               'Rol interno. Ejecuta procesos automatizados como env o de correos y asignación inicial de roles. No asignable manualmente.'),
 (@RoleAdmin,   'Administrador',         'Modera contenido de la plataforma. Puede eliminar videos, suspender canales, verificar creadores y gestionar comentarios.'),
 (@RoleCreator, 'Creador de Contenido',  'Puede subir y gestionar sus propios videos, administrar su canal y crear playlists.'),
 (@RoleUser,    'Usuario',               'Puede ver videos, reaccionar, comentar, suscribirse a canales y gestionar su historial y playlists personales.');
+GO
+
+-- ============================================================
+-- DML: Catálogo de permisos
+-- ============================================================
+
+INSERT INTO Permission (PermissionID, Code, Module, Action, Name, Description)
+VALUES
+    (NEWID(), 'CHANNELS/CREATE',           'CHANNELS',   'CREATE',  'Crear canal',              'Permite crear un canal'),
+    (NEWID(), 'CHANNELS/UPDATE',           'CHANNELS',   'UPDATE',  'Actualizar canal',         'Permite actualizar un canal propio'),
+    (NEWID(), 'CHANNELS/VERIFY',           'CHANNELS',   'VERIFY',  'Verificar canal',          'Permite verificar canales'),
+
+    (NEWID(), 'VIDEOS/UPLOAD',             'VIDEOS',     'UPLOAD',  'Subir video',              'Permite subir videos'),
+    (NEWID(), 'VIDEOS/UPDATE',             'VIDEOS',     'UPDATE',  'Editar video',             'Permite editar videos propios'),
+    (NEWID(), 'VIDEOS/DELETE',             'VIDEOS',     'DELETE',  'Eliminar video',           'Permite eliminar videos'),
+    (NEWID(), 'VIDEOS/MODERATE',           'VIDEOS',     'MODERATE','Moderar videos',           'Permite moderar videos de terceros'),
+
+    (NEWID(), 'COMMENTS/CREATE',           'COMMENTS',   'CREATE',  'Crear comentario',         'Permite comentar videos'),
+    (NEWID(), 'COMMENTS/DELETE',           'COMMENTS',   'DELETE',  'Eliminar comentario',      'Permite eliminar comentarios'),
+    (NEWID(), 'COMMENTS/DELETE_OWN',       'COMMENTS',   'DELETE',  'Eliminar comentario propio','Permite eliminar comentarios propios'),
+    (NEWID(), 'COMMENTS/MODERATE',         'COMMENTS',   'MODERATE','Moderar comentarios',      'Permite moderar comentarios'),
+
+    (NEWID(), 'PLAYLISTS/CREATE',          'PLAYLISTS',  'CREATE',  'Crear playlist',           'Permite crear playlists'),
+    (NEWID(), 'PLAYLISTS/UPDATE',          'PLAYLISTS',  'UPDATE',  'Editar playlist',          'Permite editar playlists'),
+    (NEWID(), 'PLAYLISTS/DELETE',          'PLAYLISTS',  'DELETE',  'Eliminar playlist',        'Permite eliminar playlists'),
+
+    (NEWID(), 'USERS/MANAGE',              'USERS',      'MANAGE',  'Gestionar usuarios',       'Permite administrar usuarios'),
+    (NEWID(), 'ADMIN/ACCESS',              'ADMIN',      'ACCESS',  'Acceso panel admin',       'Permite acceder al panel administrativo');
+GO
+
+-- Administrador = todos los permisos
+INSERT INTO RolePermission (RolePermissionID, RoleID, PermissionID)
+SELECT NEWID(), r.RoleID, p.PermissionID
+FROM Roles r
+CROSS JOIN Permission p -- une todas las tablas
+WHERE r.Name = 'Administrador';
+GO
+
+-- Creador de contenido
+INSERT INTO RolePermission (RolePermissionID, RoleID, PermissionID)
+SELECT NEWID(), r.RoleID, p.PermissionID
+FROM Roles r
+JOIN Permission p ON p.Code IN (
+    'CHANNELS/CREATE',
+    'CHANNELS/UPDATE',
+    'VIDEOS/UPLOAD',
+    'VIDEOS/UPDATE',
+    'VIDEOS/DELETE',
+    'COMMENTS/CREATE',
+	'COMMENTS/DELETE_OWN',
+    'PLAYLISTS/CREATE',
+    'PLAYLISTS/UPDATE',
+    'PLAYLISTS/DELETE'
+)
+WHERE r.Name = 'Creador de Contenido';
+GO
+
+-- Usuario normal
+INSERT INTO RolePermission (RolePermissionID, RoleID, PermissionID)
+SELECT NEWID(), r.RoleID, p.PermissionID
+FROM Roles r
+JOIN Permission p ON p.Code IN (
+    'COMMENTS/CREATE',
+    'COMMENTS/DELETE_OWN',
+    'PLAYLISTS/CREATE',
+    'PLAYLISTS/UPDATE',
+    'PLAYLISTS/DELETE'
+)
+WHERE r.Name = 'Usuario';
 GO
