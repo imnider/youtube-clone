@@ -10,7 +10,7 @@
         public const string SMTP_FROM = "SMTP_FROM";
 
         // Database
-        public const string CONNECTION_STRING_DATABASE = "CONNECTION_STRINGS_DATABASE";
+        public const string CONNECTION_STRING_DATABASE = "CONNECTION_STRING_DATABASE";
 
         // JWT
         public const string JWT_PRIVATE_KEY = "JWT_PRIVATE_KEY";
